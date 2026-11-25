@@ -102,8 +102,8 @@ header.top{display:flex;align-items:flex-end;justify-content:space-between;gap:1
 .qty{font-family:var(--f-mono);font-weight:500;background:var(--bg);border-radius:8px;padding:2px 8px;font-size:.85rem}
 .checks{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 .checks .btn{padding:7px 12px;font-size:.85rem}
-.checks .btn.on-ok{background:var(--ok);border-color:var(--ok);color:#fff}
-.checks .btn.on-bad{background:var(--bad);border-color:var(--bad);color:#fff}
+.checks .btn.on-ok{background:var(--ok);border-color:var(--ok);color:var(--bg)}
+.checks .btn.on-bad{background:var(--bad);border-color:var(--bad);color:var(--bg)}
 .issue{font-size:.85rem;color:var(--bad);overflow-wrap:anywhere}
 .summary{border-radius:var(--r);padding:14px 16px;display:grid;gap:8px;margin-bottom:14px}
 .summary.ok{background:var(--ok-soft)}
@@ -151,20 +151,90 @@ textarea{resize:vertical;min-height:70px}
 .sync i{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block}
 .sync.on i{background:var(--ok)}
 @media (prefers-reduced-motion:no-preference){.sheet{animation:up .22s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
+
+/* ---- Tampilan HP v2 ---- */
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--bg)}
+.wrap{padding-block:16px 130px}
+.appbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--bg);background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.appbar-in{max-width:720px;margin:0 auto;height:60px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:38px;height:38px;flex:none;border-radius:11px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+.logo svg{width:22px;height:22px}
+.brand-t{font-family:var(--f-display);font-weight:800;font-size:1.12rem;line-height:1.1;letter-spacing:-.01em}
+.brand-s{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.sync{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px 10px;white-space:nowrap;flex:none}
+@media (max-width:370px){.brand-s{display:none}}
+.pagehead{display:grid;gap:2px;margin:6px 0 14px}
+.pagehead h1{font-size:1.6rem}
+.pagehead p{margin:0;font-size:.88rem}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:18px}
+.stats div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:2px;min-width:0}
+.stats b{font-family:var(--f-display);font-size:1.55rem;font-weight:800;line-height:1.1}
+.stats span{font-size:.72rem;color:var(--muted);line-height:1.25}
+.stats .warn{background:var(--bad-soft);border-color:transparent}
+.stats .warn b{color:var(--bad)}
+.label{margin-bottom:2px}
+.list{gap:10px}
+.nota{padding:14px;gap:12px;box-shadow:0 1px 2px rgba(10,40,50,.05);transition:transform .12s, border-color .12s}
+.nota .meta h3{font-size:1rem}
+.nota .meta p{font-size:.8rem}
+.btn{min-height:44px;transition:transform .12s, background .12s}
+.nota:active,.btn:active{transform:scale(.98)}
+.back{min-height:40px}
+.head-card{padding:0;gap:0;overflow:hidden;box-shadow:0 1px 2px rgba(10,40,50,.05)}
+.head-card > .row{background:var(--accent);color:var(--accent-ink);padding:16px 18px 18px;position:relative}
+.head-card > .row .label{color:inherit;opacity:.8}
+.head-card > .row::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:12px;background:radial-gradient(circle at 6px 6px,var(--paper) 4px,transparent 4.5px) 0 0/16px 12px repeat-x}
+.head-card > .row .chip{background:var(--paper)}
+.head-card > *:not(.row){margin:0 18px}
+.head-card > .facts{margin-top:20px}
+.head-card > p{margin-top:14px !important}
+.head-card > div:last-child:not(.facts){margin-top:14px;margin-bottom:16px}
+.head-card > .facts:last-child,.head-card > p:last-child{margin-bottom:18px !important}
+.facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+@media (min-width:620px){.facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tabs{position:sticky;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:20;box-shadow:0 4px 14px rgba(10,40,50,.08)}
+.tabs button{min-height:40px}
+.item{grid-template-columns:84px 1fr;padding:12px;box-shadow:0 1px 2px rgba(10,40,50,.05)}
+.item.st-ok{background:linear-gradient(var(--ok-soft),var(--ok-soft)) left/4px 100% no-repeat,var(--paper)}
+.item.st-bad{background:linear-gradient(var(--bad-soft),var(--bad-soft)) left/4px 100% no-repeat,var(--paper)}
+.thumb{width:84px;height:84px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checks .btn{min-height:42px;padding:8px 10px}
+.summary h3{font-size:1.05rem}
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(10,40,50,.10);padding-bottom:env(safe-area-inset-bottom,0px)}
+.bb-in{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.bb-in .btn{flex:1;min-height:48px;font-size:.95rem}
+.bb-prog{flex:1;min-width:0;font-size:.85rem;color:var(--muted)}
+.bb-prog b{color:var(--ink);font-family:var(--f-mono)}
+.bb-prog .bar{margin-top:6px}
+.toast{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+input[type=text],input[type=number],input[type=date],textarea{font-size:16px;min-height:46px}
+.sheet{padding-top:0;gap:16px}
+.sheet .sh{position:sticky;top:0;z-index:3;background:var(--paper);margin:0 -18px;padding:22px 18px 12px;border-bottom:1px solid var(--line)}
+.sheet .sh::before{content:"";position:absolute;top:8px;left:50%;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:var(--line)}
+.sheet .sh h2{font-size:1.2rem}
+.sheet > .btn:last-child,.sheet > .actions:last-child{position:sticky;bottom:0;z-index:3;box-shadow:0 -14px 14px var(--paper)}
+.sheet > .btn:last-child{width:100%;min-height:50px}
+.sheet > .actions:last-child{background:var(--paper);padding-block:8px 0}
+.sheet > .actions:last-child .btn{flex:1;min-height:50px}
+.presets button{min-height:38px}
+.empty{padding:32px 20px;box-shadow:none}
+.empty .lead{margin:0;color:var(--muted);max-width:40ch}
+@media (prefers-reduced-motion:reduce){.nota,.btn{transition:none}.nota:active,.btn:active{transform:none}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 
+<header class="appbar"><div class="appbar-in">
+  <div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg></span>
+    <div style="min-width:0"><div class="brand-t">Cek Cucian</div><div class="brand-s">Catatan sebelum ke laundry</div></div></div>
+  <span class="sync" id="sync"><i></i><span>Memuat…</span></span>
+</div></header>
 <div class="wrap" id="app">
-  <header class="top">
-    <div>
-      <div class="label">Catatan sebelum ke laundry</div>
-      <h1>Cek Cucian</h1>
-    </div>
-    <span class="sync" id="sync"><i></i><span>Memuat…</span></span>
-  </header>
-  <p class="sub">Foto dan catat tiap baju sebelum diantar. Saat diambil, cocokkan satu per satu supaya tidak ada yang tertukar atau hilang.</p>
   <div id="view"></div>
 </div>
 <input type="file" id="fileIn" accept="image/*" capture="environment" hidden>
@@ -356,6 +426,7 @@ function renderList(){
   }
   if(!store.batches.length){
     h+=`<div class="empty">${ICON.shirt}<h2>Belum ada catatan cucian</h2>
+      <p class="lead">Foto dan catat tiap baju sebelum diantar. Saat diambil, cocokkan satu per satu supaya tidak ada yang tertukar atau hilang.</p>
       <ol><li>Tekan <b>Kiriman baru</b>, isi nama laundry dan tanggal antar.</li>
       <li>Tambahkan tiap baju: foto, jenis, warna, jumlah, dan catatan noda/kerusakan.</li>
       <li>Saat mengambil, buka tab <b>Cek ambil</b> dan centang yang cocok.</li></ol>
@@ -365,6 +436,10 @@ function renderList(){
   }
   const aktif=store.batches.filter(b=>{const c=counts(b);return !(c.n&&c.done===c.n)});
   const selesai=store.batches.filter(b=>{const c=counts(b);return c.n&&c.done===c.n});
+  const pcsAktif=aktif.reduce((s,b)=>s+counts(b).pcs-counts(b).okPcs,0);
+  const masalah=store.batches.reduce((s,b)=>s+counts(b).bad,0);
+  h=`<div class="pagehead"><h1>Cucian saya</h1><p class="muted">${store.batches.length} kiriman tercatat</p></div>
+    <div class="stats"><div><b>${aktif.length}</b><span>Kiriman di laundry</span></div><div><b>${pcsAktif}</b><span>Pcs belum kembali</span></div><div class="${masalah?"warn":""}"><b>${masalah}</b><span>Barang bermasalah</span></div></div>`+h;
   const card=b=>{const c=counts(b);const pct=c.n?Math.round(c.done/c.n*100):0;
     return `<button class="nota" data-open="${esc(b.id)}">
       <div class="hang"><b>${c.pcs}</b>pcs</div>
@@ -385,7 +460,7 @@ function renderList(){
         <button class="btn" data-act="restore">${ICON.upload}Pulihkan dari file</button>
       </div></section>`;
   }
-  if(store.canWrite)h+=`<button class="btn primary fab" data-act="new">${ICON.plus}Kiriman baru</button>`;
+  if(store.canWrite)h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="new">${ICON.plus}Kiriman baru</button></div></div>`;
   return h;
 }
 function bindList(){
@@ -431,7 +506,7 @@ function renderBatch(b){
       </div></div>`;
     }
     h+=`</div>`;
-    if(store.canWrite)h+=`<div class="actions"><button class="btn primary" data-act="additem">${ICON.cam}Tambah baju</button>${items.length?`<button class="btn" data-tab="cek">Mulai cek saat ambil</button>`:""}</div>`;
+    if(store.canWrite)h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="additem">${ICON.cam}Tambah baju</button>${items.length?`<button class="btn" data-tab="cek">${ICON.check}Cek saat ambil</button>`:""}</div></div>`;
   } else {
     if(!items.length){h+=`<div class="empty"><p class="muted" style="margin:0">Catat bajunya dulu di tab Catatan.</p></div>`}
     else{
@@ -449,11 +524,12 @@ function renderBatch(b){
           ${it.cek==="masalah"?`<div class="issue">${it.cekJumlah!=null&&it.cekJumlah!==""?`Kembali ${esc(it.cekJumlah)} dari ${esc(it.jumlah||1)}. `:""}${esc(it.cekCatatan||"")}</div>`:""}
           ${store.canWrite?`<div class="checks">
             <button class="btn ${it.cek==="ok"?"on-ok":""}" data-ok="${esc(it.id)}" aria-pressed="${it.cek==="ok"}">${ICON.check}Cocok</button>
-            <button class="btn ${it.cek==="masalah"?"on-bad":""}" data-bad="${esc(it.id)}" aria-pressed="${it.cek==="masalah"}">${ICON.x}Kurang / rusak</button>
+            <button class="btn ${it.cek==="masalah"?"on-bad":""}" data-bad="${esc(it.id)}" aria-pressed="${it.cek==="masalah"}">${ICON.x}Bermasalah</button>
           </div>`:""}
         </div></div>`;
       }
       h+=`</div>`;
+      h+=`<div class="bottombar"><div class="bb-in"><div class="bb-prog"><b>${c.done}/${c.n}</b> barang dicek${c.bad?` · <span style="color:var(--bad)">${c.bad} bermasalah</span>`:""}<div class="bar"><i style="width:${c.n?Math.round(c.done/c.n*100):0}%"></i></div></div>${missing.length?`<button class="btn" data-act="copy" style="flex:none">${ICON.copy}Salin</button>`:""}</div></div>`;
       if(store.canWrite&&c.done)h+=`<div class="actions"><button class="btn ghost" data-act="resetcek">Ulangi pengecekan</button></div>`;
     }
   }
@@ -579,7 +655,7 @@ function openItemSheet(b,it){
     <div class="field"><label for="iCat">Kondisi sebelum dicuci</label><textarea id="iCat" placeholder="mis. Noda kopi di lengan kanan, kancing kedua longgar">${esc(d.catatan)}</textarea></div>
     <div class="actions" style="margin:0">
       <button class="btn primary" id="iSave">${isNew?"Simpan baju":"Simpan perubahan"}</button>
-      ${isNew?`<button class="btn" id="iSaveNext">Simpan & tambah lagi</button>`:`<button class="btn danger" id="iDel">Hapus baju</button>`}
+      ${isNew?`<button class="btn" id="iSaveNext">${ICON.plus}Tambah lagi</button>`:`<button class="btn danger" id="iDel">Hapus baju</button>`}
     </div>`,()=>{
       draw();
       document.querySelectorAll("#presets button").forEach(x=>x.onclick=()=>{
