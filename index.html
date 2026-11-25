@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f7d8c">
+<meta name="description" content="Catat dan foto baju sebelum dibawa ke laundry, lalu cocokkan saat diambil.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -224,34 +225,125 @@ input[type=text],input[type=number],input[type=date],textarea{font-size:16px;min
 .empty{padding:32px 20px;box-shadow:none}
 .empty .lead{margin:0;color:var(--muted);max-width:40ch}
 @media (prefers-reduced-motion:reduce){.nota,.btn{transition:none}.nota:active,.btn:active{transform:none}}
+/* ---- Fitur pelanggan v3 ---- */
+input[type=tel]{font:inherit;font-size:16px;min-height:46px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-width:0}
+.small{font-size:.8rem}
+.field small{font-size:.78rem}
+.iconbtn{width:42px;height:42px;flex:none;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:grid;place-items:center}
+.iconbtn svg{width:22px;height:22px}
+.chip.draft{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+.chip.due{background:var(--accent);color:var(--accent-ink)}
+.nota .side{display:grid;gap:6px;justify-items:end}
+.nota.is-due{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.lockmini{color:var(--muted);display:inline-flex}
+.lockmini svg{width:16px;height:16px}
+.label.sec{margin:22px 0 10px}
+.pagehead + .stats + .label.sec,.pagehead + .stats + .alert{margin-top:0}
+.alert{display:flex;gap:12px;align-items:flex-start;background:var(--accent-soft);border-radius:12px;padding:12px 14px;margin-bottom:6px}
+.alert svg{width:22px;height:22px;color:var(--accent);flex:none;margin-top:1px}
+.alert b{display:block}
+.alert span{font-size:.85rem;color:var(--muted)}
+.backup-due{margin-top:12px}
+.hero-empty{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 18px;display:grid;gap:12px;justify-items:center;text-align:center;margin-top:8px}
+.hero-empty h2{font-size:1.45rem}
+.hero-empty .lead{margin:0;color:var(--muted);max-width:40ch}
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:100%;margin-bottom:6px}
+.steps3 div{background:var(--bg);border-radius:12px;padding:12px 8px;display:grid;gap:4px;justify-items:center}
+.steps3 span{width:28px;height:28px;border-radius:50%;background:var(--tag);color:var(--tag-ink);font-family:var(--f-display);font-weight:800;display:grid;place-items:center}
+.steps3 b{font-size:.82rem;line-height:1.2}
+.steps3 small{font-size:.7rem;color:var(--muted);line-height:1.2}
+.btn.big{width:100%;min-height:52px;font-size:1rem}
+.install{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--paper);border:1px dashed var(--accent);border-radius:14px;padding:14px;margin-top:18px}
+.install > svg{width:28px;height:28px;color:var(--accent);flex:none}
+.install > div{flex:1;min-width:180px;display:grid;gap:2px}
+.install span{font-size:.85rem;color:var(--muted)}
+.headact{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lockbar{display:flex;gap:12px;align-items:flex-start;margin-top:12px;background:var(--ok-soft);border-radius:12px;padding:12px 14px}
+.lockbar svg{width:22px;height:22px;color:var(--ok);flex:none;margin-top:1px}
+.lockbar b{display:block;font-size:.92rem}
+.lockbar span{font-size:.82rem;color:var(--muted)}
+.pile{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px;display:grid;gap:10px}
+.pile-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pile-h b{display:block}
+.pile-h .btn{min-height:40px;padding:8px 14px}
+.pile-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.pile-ph{flex:none;width:96px;height:96px;border-radius:10px;overflow:hidden;border:0;padding:0;background:var(--accent-soft)}
+.pile-ph img{width:100%;height:100%;object-fit:cover}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:2px}
+.tags span{font-size:.72rem;font-weight:600;background:var(--wait-soft);color:var(--wait);border-radius:6px;padding:2px 7px}
+.sendcard{margin-top:16px;background:var(--accent);color:var(--accent-ink);border-radius:16px;padding:16px;display:grid;gap:12px}
+.sendcard h3{font-size:1.1rem}
+.sendcard p{margin:4px 0 0;font-size:.88rem;opacity:.9}
+.sendcard .btn{background:var(--paper);color:var(--ink);border-color:var(--paper);min-height:48px}
+.ba{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:2px}
+.ba-ph{width:44px;height:44px;border-radius:8px;overflow:hidden;border:2px solid var(--bad);padding:0;background:var(--bad-soft)}
+.ba-ph img{width:100%;height:100%;object-fit:cover}
+.more{margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+.log{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-size:.8rem;color:var(--muted)}
+#confirmzone:not(:empty){margin-top:12px}
+.confirm.neutral{background:var(--accent-soft)}
+.choice{display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--ink)}
+.choice:active{border-color:var(--accent)}
+.choice > svg{width:28px;height:28px;color:var(--accent);flex:none}
+.choice b{display:block;font-size:1rem;margin-bottom:2px}
+.choice span{font-size:.85rem;color:var(--muted)}
+.qgrid{display:grid;grid-template-columns:1fr;gap:6px}
+@media (min-width:560px){.qgrid{grid-template-columns:1fr 1fr}}
+.qrow{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:6px 6px 6px 14px}
+.qrow.on{border-color:var(--accent);background:var(--accent-soft)}
+.qrow > span{font-weight:500;min-width:0}
+.qstep{display:flex;align-items:center;gap:4px}
+.qstep button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-size:1.25rem;line-height:1}
+.qstep b{min-width:30px;text-align:center;font-family:var(--f-mono);font-size:1.05rem}
+.locksum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.locksum div{background:var(--bg);border-radius:12px;padding:12px;display:grid;justify-items:center}
+.locksum b{font-size:1.5rem}
+.locksum span{font-size:.78rem;color:var(--muted)}
+.preview summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:.9rem}
+.preview pre{white-space:pre-wrap;font-family:var(--f-body);font-size:.82rem;background:var(--bg);border-radius:10px;padding:12px;margin:8px 0 0;max-height:240px;overflow:auto}
+.ob{display:grid;gap:10px;justify-items:center;text-align:center;padding-top:26px}
+.ob-ic{width:84px;height:84px;border-radius:24px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.ob-ic svg{width:44px;height:44px}
+.ob-dots{display:flex;gap:6px}
+.ob-dots i{width:8px;height:8px;border-radius:4px;background:var(--line);transition:width .2s}
+.ob-dots i.on{width:22px;background:var(--accent)}
+.ob h2{font-size:1.35rem}
+.ob p{margin:0;max-width:40ch}
+.lb-n{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));text-align:center;color:#fff;font-size:.82rem;opacity:.85}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
-
 <header class="appbar"><div class="appbar-in">
   <div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg></span>
-    <div style="min-width:0"><div class="brand-t">Cek Cucian</div><div class="brand-s">Catatan sebelum ke laundry</div></div></div>
-  <span class="sync" id="sync"><i></i><span>Memuat…</span></span>
+    <div style="min-width:0"><div class="brand-t">Cek Cucian</div><div class="brand-s">Catatan pribadi cucian Anda</div></div></div>
+  <button class="iconbtn" id="helpBtn" aria-label="Cara pakai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></button>
 </div></header>
-<div class="wrap" id="app">
-  <div id="view"></div>
-</div>
+<div class="wrap" id="app"><div id="view"></div></div>
 <input type="file" id="fileIn" accept="image/*" capture="environment" hidden>
-<input type="file" id="restoreIn" accept=".json,application/json" hidden>
 <input type="file" id="fileInGallery" accept="image/*" multiple hidden>
+<input type="file" id="restoreIn" accept=".json,application/json" hidden>
+<datalist id="laundryList"></datalist>
 <div id="overlay"></div>
 
 <script>
 (function(){
 "use strict";
+/* ================= Data dasar ================= */
 const JENIS=["Kaos","Kemeja","Celana panjang","Celana pendek","Rok","Gamis/Daster","Jaket","Seragam","Handuk","Sprei","Sarung bantal","Selimut","Kaus kaki","Pakaian dalam","Mukena/Sarung","Lainnya"];
+const RAWAT=["Cuci terpisah (luntur)","Jangan disetrika","Setrika saja","Cuci tangan","Jangan dikeringkan mesin","Dry clean"];
+const MASALAH=["Hilang","Tertukar","Luntur","Robek","Noda belum hilang","Masih bau","Kancing lepas","Menyusut"];
+const LS_KEY="cekcucian.v1", LB_KEY="cekcucian.lastBackup", OB_KEY="cekcucian.onboard";
 const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const today=()=>{const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)};
 const fmtDate=s=>{if(!s)return"–";const d=new Date(s+"T00:00:00");if(isNaN(d))return s;return d.toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"})};
+const fmtDT=t=>new Date(t).toLocaleString("id-ID",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
 const rupiah=n=>n?("Rp "+Number(n).toLocaleString("id-ID")):"–";
+const lsGet=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch(e){return false}};
 const ICON={
   plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>',
@@ -263,336 +355,364 @@ const ICON={
   save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>',
   upload:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 19h14"/></svg>',
   share:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/></svg>',
-  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>'
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>',
+  unlock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.4z"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg>',
+  repeat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9M20 4v5h-5M20 12a8 8 0 0 1-14 5.3L4 15M4 20v-5h5"/></svg>',
+  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>'
 };
 
-/* ---------- IndexedDB untuk foto (versi GitHub) ---------- */
+/* ================= Penyimpanan ================= */
 let idbP=null;
 function idb(){if(!idbP)idbP=new Promise((res,rej)=>{const r=indexedDB.open("cekcucian",1);r.onupgradeneeded=()=>r.result.createObjectStore("foto");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});return idbP}
 async function idbDo(mode,fn){const d=await idb();return new Promise((res,rej)=>{const t=d.transaction("foto",mode);const s=t.objectStore("foto");const q=fn(s);t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)})}
-/* ---------- Storage layer: db + assets, fallback to browser ---------- */
-const LS_KEY="cekcucian.v1";
-const store={mode:"loading",batches:[],db:null,assets:null,photoCache:new Map(),canWrite:true};
-function lsRead(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"[]")}catch(e){return[]}}
-function lsWrite(){try{localStorage.setItem(LS_KEY,JSON.stringify(store.batches));return true}catch(e){toast("Penyimpanan browser penuh. Hapus kiriman lama atau kurangi foto.");return false}}
+const store={batches:[],cache:new Map()};
+function load(){try{store.batches=JSON.parse(lsGet(LS_KEY,"[]"))||[]}catch(e){store.batches=[]}}
+function persist(){if(!lsSet(LS_KEY,JSON.stringify(store.batches))){toast("Memori browser penuh. Hapus kiriman lama atau cadangkan lalu bersihkan.");return false}return true}
+function saveBatch(b){b.diubah=Date.now();const i=store.batches.findIndex(x=>x.id===b.id);if(i<0)store.batches.unshift(b);else store.batches[i]=b;persist();render()}
+function allRefs(b){const r=[...(b.fotoUmum||[])];for(const it of b.items||[]){r.push(...(it.foto||[]),...(it.cekFoto||[]))}return r}
+async function deleteBatch(b){store.batches=store.batches.filter(x=>x.id!==b.id);persist();for(const r of allRefs(b))await deletePhoto(r)}
+async function deletePhoto(r){try{if(r&&r.i)await idbDo("readwrite",s=>s.delete(r.i))}catch(e){}}
 
-const writing=new Map(), pending=new Map();
-async function saveBatch(b){
-  b.diubah=Date.now();
-  const i=store.batches.findIndex(x=>x.id===b.id);
-  if(i<0)store.batches.unshift(b);else store.batches[i]=b;
-  render();
-  if(store.mode!=="db"){lsWrite();return}
-  pending.set(b.id,JSON.parse(JSON.stringify(b)));
-  if(writing.get(b.id))return;
-  writing.set(b.id,true);
-  try{
-    while(pending.has(b.id)){
-      const data=pending.get(b.id);pending.delete(b.id);
-      const {id,...body}=data;
-      await store.db.collection("kiriman").doc(id).set(body);
-    }
-  }catch(e){
-    toast(e&&e.code==="permission_denied"?"Anda hanya bisa melihat. Minta akses edit ke pemilik.":"Gagal menyimpan: "+(e&&e.message||"coba lagi"));
-  }finally{writing.delete(b.id)}
-}
-async function deleteBatch(b){
-  store.batches=store.batches.filter(x=>x.id!==b.id);
-  if(store.mode==="db"){
-    try{
-      await store.db.collection("kiriman").doc(b.id).delete();
-      for(const it of b.items||[])for(const r of it.foto||[])await deletePhoto(r);
-    }catch(e){toast("Gagal menghapus: "+(e&&e.message||""))}
-  } else lsWrite();
-}
-async function compress(file,max,q){
+/* Foto: dikecilkan + cap waktu */
+async function compress(file){
   const url=URL.createObjectURL(file);
   try{
-    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=url});
-    const s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+    const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error("File bukan gambar"));i.src=url});
+    const max=1400,s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
     const c=document.createElement("canvas");c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
-    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-    return await new Promise(res=>c.toBlob(b=>res(b),"image/jpeg",q));
+    const g=c.getContext("2d");g.drawImage(img,0,0,c.width,c.height);
+    const fs=Math.max(14,Math.round(c.width/30)),pad=Math.round(fs*.6);
+    const stamp=fmtDT(Date.now())+" · Cek Cucian";
+    g.font=`600 ${fs}px system-ui, -apple-system, Segoe UI, sans-serif`;
+    const tw=g.measureText(stamp).width;
+    g.fillStyle="rgba(0,0,0,.55)";g.fillRect(c.width-tw-pad*3,c.height-fs-pad*3,tw+pad*2,fs+pad*2);
+    g.fillStyle="#fff";g.textBaseline="top";g.fillText(stamp,c.width-tw-pad*2,c.height-fs-pad*2);
+    return await new Promise(res=>c.toBlob(b=>res(b),"image/jpeg",.8));
   }finally{URL.revokeObjectURL(url)}
 }
-const blobToDataURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(b)});
 async function savePhoto(file){
-  if(store.mode==="db"&&store.assets){
-    const blob=await compress(file,1400,.78);
-    const a=await store.assets.upload(blob);
-    store.photoCache.set("a:"+a.id,a.url);
-    return {a:a.id};
-  }
-  if(store.mode==="db"){
-    const blob=await compress(file,900,.62);
-    const u=await blobToDataURL(blob);
-    const ref=store.db.collection("foto").doc();
-    await ref.set({u});
-    store.photoCache.set("d:"+ref.id,u);
-    return {d:ref.id};
-  }
-  const blob=await compress(file,1400,.78);
-  const id=uid();
+  const blob=await compress(file);const id=uid();
   await idbDo("readwrite",s=>s.put(blob,id));
-  store.photoCache.set("i:"+id,URL.createObjectURL(blob));
+  store.cache.set(id,URL.createObjectURL(blob));
   return {i:id};
 }
-async function deletePhoto(r){
-  try{
-    if(r.a&&store.assets)await store.assets.delete(r.a);
-    if(r.d&&store.db)await store.db.collection("foto").doc(r.d).delete();
-    if(r.i)await idbDo("readwrite",s=>s.delete(r.i));
-  }catch(e){}
-}
 function photoSrc(r){
-  if(!r)return null;
-  if(r.u)return r.u;
-  if(r.a)return store.photoCache.get("a:"+r.a)||("/_blob/"+r.a);
-  if(r.i){
-    const k="i:"+r.i;
-    if(store.photoCache.has(k))return store.photoCache.get(k);
-    store.photoCache.set(k,null);
-    idbDo("readonly",s=>s.get(r.i)).then(b=>{if(b){store.photoCache.set(k,URL.createObjectURL(b));render()}}).catch(()=>{});
-    return null;
-  }
-  if(r.d){
-    const k="d:"+r.d;
-    if(store.photoCache.has(k))return store.photoCache.get(k);
-    store.photoCache.set(k,null);
-    store.db&&store.db.collection("foto").doc(r.d).get().then(s=>{if(s.exists){store.photoCache.set(k,s.data().u);render()}}).catch(()=>{});
-    return null;
-  }
+  if(!r||!r.i)return null;
+  if(store.cache.has(r.i))return store.cache.get(r.i);
+  store.cache.set(r.i,null);
+  idbDo("readonly",s=>s.get(r.i)).then(b=>{if(b){store.cache.set(r.i,URL.createObjectURL(b));refreshImages()}}).catch(()=>{});
   return null;
 }
+let refreshT;function refreshImages(){clearTimeout(refreshT);refreshT=setTimeout(()=>{if(sheetRedraw)sheetRedraw();if(!sheetOpen)render()},60)}
 
-async function boot(){
-  let db=null,assets=null,user=null;
-  try{
-    if(window.claude&&window.claude.use){
-      [db,assets,user]=await Promise.all([window.claude.use("db"),window.claude.use("assets"),window.claude.use("user")]);
-    }
-  }catch(e){}
-  if(!db){
-    store.mode="local";store.batches=lsRead();setSync();render();return;
-  }
-  store.db=db;store.assets=assets;store.mode="db";
-  if(user){try{const c=await user.can("data.write");if(c===false)store.canWrite=false}catch(e){}}
-  let timer=setTimeout(()=>{setSync("Belum tersambung, data mungkin belum terbaru");},10000);
-  db.collection("kiriman").onSnapshot(snap=>{
-    if(!snap.metadata.fromCache){clearTimeout(timer);setSync()}
-    store.loaded=true;
-    store.batches=snap.docs.map(d=>({id:d.id,...JSON.parse(JSON.stringify(d.data()))}))
-      .sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));
-    if(!sheetOpen)render();
-  },err=>{clearTimeout(timer);setSync("Tidak bisa memuat data ("+(err&&err.code||"error")+")");store.loaded=true;render()});
-  render();
-}
-function setSync(msg){
-  const el=$("#sync");
-  if(msg){el.className="sync";el.lastChild.textContent=msg;return}
-  if(store.mode==="db"){el.className="sync on";el.lastChild.textContent="Tersimpan di akun"}
-  else{el.className="sync on";el.lastChild.textContent="Tersimpan di HP ini"}
-}
-
-/* ---------- State & helpers ---------- */
+/* ================= Status & bantuan ================= */
 const ui={view:"list",id:null,tab:"catatan"};
-let sheetOpen=false;
+let sheetOpen=false,sheetRedraw=null;
 function counts(b){
-  const items=b.items||[];let pcs=0,ok=0,bad=0,okPcs=0;
+  let pcs=0,ok=0,bad=0,okPcs=0;const items=b.items||[];
   for(const it of items){const n=Number(it.jumlah)||1;pcs+=n;if(it.cek==="ok"){ok++;okPcs+=n}else if(it.cek==="masalah")bad++}
   return {n:items.length,pcs,ok,bad,okPcs,done:ok+bad};
 }
+const selesaiCek=b=>{const c=counts(b);return c.n>0&&c.done===c.n};
+function dueInfo(b){
+  if(!b.tglAmbil||selesaiCek(b)||!b.dikunci)return null;
+  const d=Math.round((new Date(b.tglAmbil+"T00:00:00")-new Date(today()+"T00:00:00"))/864e5);
+  if(d<0)return {cls:"bad",txt:`Terlambat ${-d} hari`,rank:0};
+  if(d===0)return {cls:"due",txt:"Ambil hari ini",rank:1};
+  if(d===1)return {cls:"wait",txt:"Ambil besok",rank:2};
+  return {cls:"wait",txt:`Ambil ${d} hari lagi`,rank:3};
+}
 function statusChip(b){
   const c=counts(b);
-  if(c.n&&c.done===c.n)return c.bad?`<span class="chip bad">${c.bad} bermasalah</span>`:`<span class="chip ok">Lengkap</span>`;
+  if(selesaiCek(b))return c.bad?`<span class="chip bad">${c.bad} bermasalah</span>`:`<span class="chip ok">Lengkap</span>`;
   if(c.done)return`<span class="chip wait">Dicek ${c.done}/${c.n}</span>`;
-  return`<span class="chip wait">Di laundry</span>`;
+  if(!b.dikunci)return`<span class="chip draft">Belum diantar</span>`;
+  const d=dueInfo(b);
+  return d?`<span class="chip ${d.cls}">${d.txt}</span>`:`<span class="chip wait">Di laundry</span>`;
+}
+function waNumber(s){let d=String(s||"").replace(/\D/g,"");if(!d)return"";if(d.startsWith("0"))d="62"+d.slice(1);else if(d.startsWith("8"))d="62"+d;return d}
+function openWA(num,text){
+  const url=(num?`https://wa.me/${num}`:"https://wa.me/")+"?text="+encodeURIComponent(text);
+  const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
 }
 function current(){return store.batches.find(b=>b.id===ui.id)}
 function go(view,id,tab){ui.view=view;ui.id=id||null;if(tab)ui.tab=tab;render();window.scrollTo(0,0)}
+function knownLaundries(){const m=new Map();for(const b of [...store.batches].sort((a,b)=>(a.diubah||0)-(b.diubah||0)))if(b.laundry&&b.laundry!=="Laundry")m.set(b.laundry,b.wa||"");return m}
 
-/* ---------- Render ---------- */
+/* ================= Teks WhatsApp ================= */
+function daftarText(b){
+  const c=counts(b);
+  const L=[`*Daftar cucian saya*`,`Laundry: ${b.laundry||"-"}`];
+  if(b.nota)L.push(`No. nota: ${b.nota}`);
+  L.push(`Diantar: ${b.dikunci?fmtDT(b.dikunci):fmtDate(b.tglAntar)}`);
+  if(b.tglAmbil)L.push(`Janji ambil: ${fmtDate(b.tglAmbil)}`);
+  L.push("");
+  (b.items||[]).forEach((it,i)=>{
+    L.push(`${i+1}. ${it.jenis}${it.warna?" – "+it.warna:""} ×${it.jumlah||1}`);
+    if(it.catatan)L.push(`   Kondisi awal: ${it.catatan}`);
+    if((it.perawatan||[]).length)L.push(`   Perawatan: ${it.perawatan.join(", ")}`);
+  });
+  L.push("",`*Total: ${c.pcs} pcs (${c.n} jenis)*`,"","Mohon dicek kesesuaiannya. Terima kasih.","_Dicatat dengan Cek Cucian, lengkap dengan foto._");
+  return L.join("\n");
+}
+function masalahText(b){
+  const c=counts(b);
+  const L=[`*Laporan pengecekan cucian*`,`Laundry: ${b.laundry||"-"}${b.nota?" · nota "+b.nota:""}`,`Diantar: ${b.dikunci?fmtDT(b.dikunci):fmtDate(b.tglAntar)} · total ${c.pcs} pcs`,"","Barang tidak sesuai:"];
+  (b.items||[]).filter(i=>i.cek==="masalah").forEach(i=>{
+    const k=(i.cekJumlah!=null&&i.cekJumlah!=="")?` – kembali ${i.cekJumlah} dari ${i.jumlah||1}`:"";
+    L.push(`- ${i.jenis}${i.warna?" ("+i.warna+")":""} ×${i.jumlah||1}${k}${i.cekCatatan?". "+i.cekCatatan:""}`);
+  });
+  L.push("","Saya punya foto barang sebelum diantar dan bisa saya kirimkan. Mohon ditindaklanjuti. Terima kasih.");
+  return L.join("\n");
+}
+
+/* ================= Tampilan daftar ================= */
 function render(){
   const v=$("#view");
-  if(ui.view==="batch"){const b=current();if(!b){ui.view="list";}else{v.innerHTML=renderBatch(b);bindBatch(b);return}}
+  if(ui.view==="batch"){const b=current();if(b){v.innerHTML=renderBatch(b);bindBatch(b);return}ui.view="list"}
   v.innerHTML=renderList();bindList();
+}
+function cardHTML(b){
+  const c=counts(b),pct=c.n?Math.round(c.done/c.n*100):0,d=dueInfo(b);
+  return `<button class="nota ${d&&d.rank<=1?"is-due":""}" data-open="${esc(b.id)}">
+    <div class="hang"><b>${c.pcs}</b>pcs</div>
+    <div class="meta"><h3>${esc(b.laundry||"Laundry")}</h3>
+      <p>${b.dikunci?"Diantar":"Dibuat"} ${esc(fmtDate(b.tglAntar))}${b.tglAmbil?` · Ambil ${esc(fmtDate(b.tglAmbil))}`:""}${b.nota?` · <span class="mono">#${esc(b.nota)}</span>`:""}</p>
+      ${c.done&&c.done<c.n?`<div class="bar"><i style="width:${pct}%"></i></div>`:""}
+    </div>
+    <div class="side">${statusChip(b)}${b.dikunci?`<span class="lockmini" title="Catatan dikunci">${ICON.lock}</span>`:""}</div>
+  </button>`;
 }
 function renderList(){
   let h="";
-  if(store.mode==="local"&&store.batches.length&&backupDue())h+=`<div class="note backup-due"><div><b>${lastBackup()?"Sudah "+daysSince(lastBackup())+" hari belum dicadangkan.":"Data belum pernah dicadangkan."}</b> Catatan dan foto hanya ada di HP ini. Simpan file cadangan supaya aman kalau HP rusak atau ganti HP.</div><button class="btn" data-act="backup">${ICON.save}Cadangkan sekarang</button></div>`;
-  if(store.mode==="db"&&!store.canWrite)h+=`<div class="note">Anda punya akses lihat saja. Minta akses edit ke pemilik untuk menambah catatan.</div>`;
-  if(store.mode==="loading"||(store.mode==="db"&&!store.loaded)){
-    return h+`<div class="empty"><p class="muted">Memuat daftar cucian…</p></div>`;
-  }
   if(!store.batches.length){
-    h+=`<div class="empty">${ICON.shirt}<h2>Belum ada catatan cucian</h2>
-      <p class="lead">Foto dan catat tiap baju sebelum diantar. Saat diambil, cocokkan satu per satu supaya tidak ada yang tertukar atau hilang.</p>
-      <ol><li>Tekan <b>Kiriman baru</b>, isi nama laundry dan tanggal antar.</li>
-      <li>Tambahkan tiap baju: foto, jenis, warna, jumlah, dan catatan noda/kerusakan.</li>
-      <li>Saat mengambil, buka tab <b>Cek ambil</b> dan centang yang cocok.</li></ol>
-      <button class="btn primary" data-act="new">${ICON.plus}Kiriman baru</button>
-      ${store.mode==="local"?`<button class="btn ghost" data-act="restore">${ICON.upload}Pindahan dari HP lain? Pulihkan dari file cadangan</button>`:""}</div>`;
+    h+=`<div class="hero-empty">
+      <div class="steps3">
+        <div><span>1</span><b>Foto & catat</b><small>Sebelum diantar</small></div>
+        <div><span>2</span><b>Kirim ke laundry</b><small>Lewat WhatsApp</small></div>
+        <div><span>3</span><b>Cek saat ambil</b><small>Cocokkan satu per satu</small></div>
+      </div>
+      <h2>Cucian Anda, tercatat lengkap</h2>
+      <p class="lead">Catat dan foto baju sebelum dibawa ke laundry mana saja. Saat mengambil, cocokkan dengan catatan supaya tidak ada yang hilang atau tertukar.</p>
+      <button class="btn primary big" data-act="new">${ICON.plus}Catat cucian pertama</button>
+      <button class="btn ghost" data-act="restore">${ICON.upload}Pindahan dari HP lain? Pulihkan cadangan</button>
+    </div>`;
+    h+=installCard();
     return h;
   }
-  const aktif=store.batches.filter(b=>{const c=counts(b);return !(c.n&&c.done===c.n)});
-  const selesai=store.batches.filter(b=>{const c=counts(b);return c.n&&c.done===c.n});
-  const pcsAktif=aktif.reduce((s,b)=>s+counts(b).pcs-counts(b).okPcs,0);
+  const kunci=store.batches.filter(b=>b.dikunci&&!selesaiCek(b)).sort((a,b)=>{const x=dueInfo(a),y=dueInfo(b);return (x?x.rank:4)-(y?y.rank:4)||(a.tglAmbil||"9").localeCompare(b.tglAmbil||"9")});
+  const draft=store.batches.filter(b=>!b.dikunci&&!selesaiCek(b));
+  const done=store.batches.filter(selesaiCek);
+  const pcsBelum=kunci.reduce((s,b)=>{const c=counts(b);return s+c.pcs-c.okPcs},0);
   const masalah=store.batches.reduce((s,b)=>s+counts(b).bad,0);
-  h=`<div class="pagehead"><h1>Cucian saya</h1><p class="muted">${store.batches.length} kiriman tercatat</p></div>
-    <div class="stats"><div><b>${aktif.length}</b><span>Kiriman di laundry</span></div><div><b>${pcsAktif}</b><span>Pcs belum kembali</span></div><div class="${masalah?"warn":""}"><b>${masalah}</b><span>Barang bermasalah</span></div></div>`+h;
-  const card=b=>{const c=counts(b);const pct=c.n?Math.round(c.done/c.n*100):0;
-    return `<button class="nota" data-open="${esc(b.id)}">
-      <div class="hang"><b>${c.pcs}</b>pcs</div>
-      <div class="meta"><h3>${esc(b.laundry||"Laundry")}</h3>
-        <p>Antar ${esc(fmtDate(b.tglAntar))}${b.tglAmbil?` · Ambil ${esc(fmtDate(b.tglAmbil))}`:""}${b.nota?` · <span class="mono">#${esc(b.nota)}</span>`:""}</p>
-        ${c.done&&c.done<c.n?`<div class="bar"><i style="width:${pct}%"></i></div>`:""}
-      </div>
-      <div style="display:grid;gap:6px;justify-items:end">${statusChip(b)}${b.contoh?'<span class="chip ex">Contoh</span>':""}</div>
-    </button>`};
-  if(aktif.length)h+=`<div class="label" style="margin:4px 0 10px">Masih di laundry · ${aktif.length}</div><div class="list">${aktif.map(card).join("")}</div>`;
-  if(selesai.length)h+=`<div class="label" style="margin:24px 0 10px">Sudah diambil & dicek · ${selesai.length}</div><div class="list">${selesai.map(card).join("")}</div>`;
-  if(store.mode==="local"){
-    const lb=lastBackup();
-    h+=`<section class="backup"><div><h3>Cadangan data</h3>
-      <p class="muted">${lb?`Terakhir dicadangkan ${esc(fmtDateTime(lb))}.`:"Belum pernah dicadangkan."} File cadangan berisi semua catatan dan foto. Simpan di Google Drive atau kirim ke WhatsApp sendiri, lalu pulihkan di HP lain.</p></div>
-      <div class="actions" style="margin:0">
-        <button class="btn primary" data-act="backup">${ICON.save}Cadangkan</button>
-        <button class="btn" data-act="restore">${ICON.upload}Pulihkan dari file</button>
-      </div></section>`;
-  }
-  if(store.canWrite)h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="new">${ICON.plus}Kiriman baru</button></div></div>`;
+  const due=kunci.filter(b=>{const d=dueInfo(b);return d&&d.rank<=1});
+  h+=`<div class="pagehead"><h1>Cucian saya</h1><p class="muted">${store.batches.length} kiriman tercatat</p></div>
+    <div class="stats"><div><b>${kunci.length}</b><span>Di laundry</span></div><div><b>${pcsBelum}</b><span>Pcs belum kembali</span></div><div class="${masalah?"warn":""}"><b>${masalah}</b><span>Bermasalah</span></div></div>`;
+  if(due.length)h+=`<div class="alert">${ICON.clock}<div><b>${due.length===1?esc(due[0].laundry)+": "+dueInfo(due[0]).txt.toLowerCase():due.length+" kiriman perlu diambil"}</b><span>Jangan lupa cek cucian saat mengambil.</span></div></div>`;
+  if(lsGet(LS_KEY)&&backupDue()&&store.batches.length>=1)h+=`<div class="note backup-due"><div><b>${lastBackup()?"Sudah "+daysSince(lastBackup())+" hari belum dicadangkan.":"Catatan belum pernah dicadangkan."}</b> Data hanya ada di HP ini. Simpan cadangan supaya aman kalau HP rusak atau ganti HP.</div><button class="btn" data-act="backup">${ICON.save}Cadangkan sekarang</button></div>`;
+  if(draft.length)h+=`<div class="label sec">Belum diantar · ${draft.length}</div><div class="list">${draft.map(cardHTML).join("")}</div>`;
+  if(kunci.length)h+=`<div class="label sec">Di laundry · ${kunci.length}</div><div class="list">${kunci.map(cardHTML).join("")}</div>`;
+  if(done.length)h+=`<div class="label sec">Sudah diambil & dicek · ${done.length}</div><div class="list">${done.map(cardHTML).join("")}</div>`;
+  h+=installCard();
+  const lb=lastBackup();
+  h+=`<section class="backup"><div><h3>Cadangan data</h3>
+    <p class="muted">${lb?`Terakhir dicadangkan ${esc(fmtDT(lb))}.`:"Belum pernah dicadangkan."} Catatan dan foto tersimpan di HP ini saja. File cadangan bisa disimpan di Google Drive atau WhatsApp, lalu dipulihkan di HP lain.</p></div>
+    <div class="actions" style="margin:0"><button class="btn primary" data-act="backup">${ICON.save}Cadangkan</button><button class="btn" data-act="restore">${ICON.upload}Pulihkan dari file</button></div></section>`;
+  h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="new">${ICON.plus}Catat cucian baru</button></div></div>`;
   return h;
 }
 function bindList(){
-  document.querySelectorAll("[data-open]").forEach(el=>el.onclick=()=>go("batch",el.dataset.open,"catatan"));
-  document.querySelectorAll('[data-act="new"]').forEach(el=>el.onclick=()=>openBatchSheet(null));
-  document.querySelectorAll('[data-act="backup"]').forEach(el=>el.onclick=()=>openBackupSheet());
-  document.querySelectorAll('[data-act="restore"]').forEach(el=>el.onclick=()=>$("#restoreIn").click());
+  $$("[data-open]").forEach(el=>el.onclick=()=>go("batch",el.dataset.open,"catatan"));
+  $$('[data-act="new"]').forEach(el=>el.onclick=()=>openBatchSheet(null));
+  $$('[data-act="backup"]').forEach(el=>el.onclick=openBackupSheet);
+  $$('[data-act="restore"]').forEach(el=>el.onclick=()=>$("#restoreIn").click());
+  $$('[data-act="install"]').forEach(el=>el.onclick=doInstall);
 }
-function thumbHTML(it){
-  const f=(it.foto||[]);const src=photoSrc(f[0]);
-  return `<button class="thumb" data-photo="${esc(it.id)}" aria-label="Lihat foto ${esc(it.jenis)}">${src?`<img src="${esc(src)}" alt="">`:ICON.shirt}${f.length>1?`<span class="n">${f.length}</span>`:""}</button>`;
+
+/* ================= Pasang aplikasi ================= */
+let deferredPrompt=null;
+const isStandalone=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;if(!sheetOpen)render()});
+window.addEventListener("appinstalled",()=>{deferredPrompt=null;toast("Aplikasi terpasang di layar utama");render()});
+function installCard(){
+  if(isStandalone()||lsGet("cekcucian.noinstall"))return"";
+  if(!deferredPrompt&&!isIOS())return"";
+  return `<div class="install">${ICON.phone}<div><b>Pasang di layar utama</b><span>${deferredPrompt?"Buka Cek Cucian seperti aplikasi biasa, tanpa mengetik alamat.":"Di Safari, tekan tombol Bagikan lalu pilih <b>Tambah ke Layar Utama</b>."}</span></div>${deferredPrompt?`<button class="btn primary" data-act="install">Pasang</button>`:""}</div>`;
 }
+async function doInstall(){if(!deferredPrompt)return;deferredPrompt.prompt();try{await deferredPrompt.userChoice}catch(e){}deferredPrompt=null;render()}
+
+/* ================= Tampilan kiriman ================= */
+function thumbHTML(refs,key,label){
+  const src=photoSrc(refs[0]);
+  return `<button class="thumb" data-photos="${esc(key)}" aria-label="Lihat foto ${esc(label)}">${src?`<img src="${esc(src)}" alt="">`:ICON.shirt}${refs.length>1?`<span class="n">${refs.length}</span>`:""}</button>`;
+}
+function tagsHTML(it){return (it.perawatan||[]).length?`<div class="tags">${it.perawatan.map(t=>`<span>${esc(t)}</span>`).join("")}</div>`:""}
 function renderBatch(b){
-  const c=counts(b);const items=b.items||[];
-  let h=`<button class="btn ghost back" data-act="back">${ICON.back}Semua kiriman</button>
+  const c=counts(b),items=b.items||[],locked=!!b.dikunci;
+  let h=`<button class="btn ghost back" data-act="back">${ICON.back}Semua cucian</button>
   <section class="head-card">
     <div class="row" style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap">
-      <div style="min-width:0"><div class="label">${b.contoh?"Contoh · ":""}Kiriman laundry</div><h2 style="overflow-wrap:anywhere">${esc(b.laundry||"Laundry")}</h2></div>
+      <div style="min-width:0"><div class="label">Kiriman laundry</div><h2 style="overflow-wrap:anywhere">${esc(b.laundry||"Laundry")}</h2></div>
       ${statusChip(b)}
     </div>
     <div class="facts">
       <div><div class="label">No. nota</div><div class="v mono">${b.nota?"#"+esc(b.nota):"–"}</div></div>
-      <div><div class="label">Tgl antar</div><div class="v">${esc(fmtDate(b.tglAntar))}</div></div>
+      <div><div class="label">${locked?"Diantar":"Tgl antar"}</div><div class="v">${esc(locked?fmtDT(b.dikunci):fmtDate(b.tglAntar))}</div></div>
       <div><div class="label">Janji ambil</div><div class="v">${esc(fmtDate(b.tglAmbil))}</div></div>
       <div><div class="label">Berat / harga</div><div class="v"><span class="mono">${b.berat?esc(b.berat)+" kg":"–"}</span> · ${esc(rupiah(b.harga))}</div></div>
     </div>
     ${b.catatan?`<p class="muted" style="margin:0;overflow-wrap:anywhere">${esc(b.catatan)}</p>`:""}
-    ${store.canWrite?`<div><button class="btn" data-act="editb">Ubah info kiriman</button></div>`:""}
-  </section>
-  <div class="tabs" role="tablist">
-    <button role="tab" aria-selected="${ui.tab==="catatan"}" data-tab="catatan">Catatan (${c.n})</button>
+    <div class="headact"><button class="btn" data-act="editb">Ubah info</button>${b.wa?`<span class="muted small">WA laundry: <span class="mono">${esc(b.wa)}</span></span>`:""}</div>
+  </section>`;
+  if(locked)h+=`<div class="lockbar">${ICON.lock}<div><b>Catatan dikunci sejak ${esc(fmtDT(b.dikunci))}</b><span>Daftar barang tidak bisa diubah, jadi bisa dipakai sebagai bukti.</span></div></div>`;
+  h+=`<div class="tabs" role="tablist">
+    <button role="tab" aria-selected="${ui.tab==="catatan"}" data-tab="catatan">Catatan (${c.pcs} pcs)</button>
     <button role="tab" aria-selected="${ui.tab==="cek"}" data-tab="cek">Cek ambil ${c.n?`(${c.done}/${c.n})`:""}</button>
   </div>`;
   if(ui.tab==="catatan"){
+    const fu=b.fotoUmum||[];
+    if(fu.length||!locked)h+=`<div class="pile"><div class="pile-h"><div><b>Foto tumpukan</b><span class="muted small">Semua baju dalam satu foto</span></div>${locked?"":`<button class="btn" data-act="pilecam">${ICON.cam}Foto</button>`}</div>
+      ${fu.length?`<div class="pile-row">${fu.map((r,i)=>{const s=photoSrc(r);return `<button class="pile-ph" data-pile="${i}">${s?`<img src="${esc(s)}" alt="Foto tumpukan ${i+1}">`:""}</button>`}).join("")}</div>`:""}</div>`;
     h+=`<div class="total"><span>${c.n} jenis barang</span><span class="mono">Total ${c.pcs} pcs</span></div><div class="items">`;
-    if(!items.length)h+=`<div class="empty">${ICON.cam}<p class="muted" style="margin:0">Belum ada baju dicatat. Foto tiap baju supaya mudah dicocokkan nanti.</p></div>`;
+    if(!items.length)h+=`<div class="empty">${ICON.cam}<p class="muted" style="margin:0">Belum ada baju dicatat. Pakai <b>Isi cepat</b> untuk mencatat jumlah per jenis, atau <b>Tambah baju</b> untuk mencatat satu per satu dengan foto.</p></div>`;
     for(const it of items){
-      h+=`<div class="item">${thumbHTML(it)}<div class="body">
+      h+=`<div class="item">${thumbHTML(it.foto||[],"f:"+it.id,it.jenis)}<div class="body">
         <div class="row"><h3>${esc(it.jenis)}</h3><span class="qty">×${esc(it.jumlah||1)}</span></div>
         ${it.warna?`<div class="desc">${esc(it.warna)}</div>`:""}
         ${it.catatan?`<div class="desc">${esc(it.catatan)}</div>`:""}
-        ${store.canWrite?`<div><button class="btn ghost" style="padding:4px 0" data-edit="${esc(it.id)}">Ubah</button></div>`:""}
+        ${tagsHTML(it)}
+        ${locked?"":`<div><button class="btn ghost" style="padding:4px 0;min-height:32px" data-edit="${esc(it.id)}">Ubah</button></div>`}
       </div></div>`;
     }
     h+=`</div>`;
-    if(store.canWrite)h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="additem">${ICON.cam}Tambah baju</button>${items.length?`<button class="btn" data-tab="cek">${ICON.check}Cek saat ambil</button>`:""}</div></div>`;
+    if(!locked&&items.length)h+=`<div class="sendcard"><div><h3>Sudah selesai mencatat?</h3><p>Kirim daftar ini ke laundry lewat WhatsApp saat mengantar, lalu catatan dikunci supaya bisa jadi bukti.</p></div><button class="btn primary" data-act="lock">${ICON.wa}Kirim ke laundry & kunci</button></div>`;
+    if(locked)h+=`<div class="actions"><button class="btn" data-act="sendlist">${ICON.wa}Kirim ulang daftar ke WhatsApp</button><button class="btn" data-act="copylist">${ICON.copy}Salin daftar</button></div>`;
+    h+=locked
+      ?`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-tab="cek">${ICON.check}Cek saat ambil</button></div></div>`
+      :`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="additem">${ICON.cam}Tambah baju</button><button class="btn" data-act="quick">${ICON.bolt}Isi cepat</button></div></div>`;
   } else {
-    if(!items.length){h+=`<div class="empty"><p class="muted" style="margin:0">Catat bajunya dulu di tab Catatan.</p></div>`}
+    if(!items.length)h+=`<div class="empty"><p class="muted" style="margin:0">Catat bajunya dulu di tab Catatan.</p></div>`;
     else{
-      const missing=items.filter(i=>i.cek==="masalah");
       const cls=c.done<c.n?"wait":(c.bad?"bad":"ok");
-      const msg=c.done<c.n?`Cocokkan tiap baju dengan fotonya. ${c.n-c.done} lagi belum dicek.`:(c.bad?`${c.bad} barang bermasalah. Salin ringkasan untuk disampaikan ke laundry.`:`Semua ${c.pcs} pcs lengkap dan sesuai catatan.`);
+      const msg=c.done<c.n?`Cocokkan tiap barang dengan foto dan jumlahnya. ${c.n-c.done} lagi belum dicek.`:(c.bad?`${c.bad} barang tidak sesuai. Kirim laporan ke laundry selagi masih di tempat.`:`Semua ${c.pcs} pcs lengkap dan sesuai catatan.`);
       h+=`<div class="summary ${cls}"><h3>${c.done<c.n?"Sedang dicek":(c.bad?"Ada yang tidak sesuai":"Cucian lengkap")}</h3><div>${esc(msg)}</div>
-        ${missing.length?`<div><button class="btn" data-act="copy">${ICON.copy}Salin ringkasan</button></div>`:""}</div><div class="items">`;
+        <div class="actions" style="margin:4px 0 0">${c.bad?`<button class="btn" data-act="sendissue">${ICON.wa}Laporkan ke laundry</button>`:""}${c.done<c.n?`<button class="btn" data-act="allok">${ICON.check}Sisanya cocok semua</button>`:""}</div></div><div class="items">`;
       for(const it of items){
         const st=it.cek==="ok"?"st-ok":it.cek==="masalah"?"st-bad":"";
-        h+=`<div class="item ${st}">${thumbHTML(it)}<div class="body">
+        const after=it.cekFoto||[];
+        h+=`<div class="item ${st}">${thumbHTML(it.foto||[],"f:"+it.id,it.jenis)}<div class="body">
           <div class="row"><h3>${esc(it.jenis)}</h3><span class="qty">×${esc(it.jumlah||1)}</span></div>
           ${it.warna?`<div class="desc">${esc(it.warna)}</div>`:""}
-          ${it.catatan?`<div class="desc">Catatan awal: ${esc(it.catatan)}</div>`:""}
+          ${it.catatan?`<div class="desc">Kondisi awal: ${esc(it.catatan)}</div>`:""}
           ${it.cek==="masalah"?`<div class="issue">${it.cekJumlah!=null&&it.cekJumlah!==""?`Kembali ${esc(it.cekJumlah)} dari ${esc(it.jumlah||1)}. `:""}${esc(it.cekCatatan||"")}</div>`:""}
-          ${store.canWrite?`<div class="checks">
+          ${after.length?`<div class="ba"><span class="small muted">Foto saat ambil:</span>${after.map((r,i)=>{const s=photoSrc(r);return `<button class="ba-ph" data-photos="a:${esc(it.id)}" data-idx="${i}">${s?`<img src="${esc(s)}" alt="">`:""}</button>`}).join("")}</div>`:""}
+          <div class="checks">
             <button class="btn ${it.cek==="ok"?"on-ok":""}" data-ok="${esc(it.id)}" aria-pressed="${it.cek==="ok"}">${ICON.check}Cocok</button>
             <button class="btn ${it.cek==="masalah"?"on-bad":""}" data-bad="${esc(it.id)}" aria-pressed="${it.cek==="masalah"}">${ICON.x}Bermasalah</button>
-          </div>`:""}
+          </div>
         </div></div>`;
       }
       h+=`</div>`;
-      h+=`<div class="bottombar"><div class="bb-in"><div class="bb-prog"><b>${c.done}/${c.n}</b> barang dicek${c.bad?` · <span style="color:var(--bad)">${c.bad} bermasalah</span>`:""}<div class="bar"><i style="width:${c.n?Math.round(c.done/c.n*100):0}%"></i></div></div>${missing.length?`<button class="btn" data-act="copy" style="flex:none">${ICON.copy}Salin</button>`:""}</div></div>`;
-      if(store.canWrite&&c.done)h+=`<div class="actions"><button class="btn ghost" data-act="resetcek">Ulangi pengecekan</button></div>`;
+      if(c.done)h+=`<div class="actions"><button class="btn ghost" data-act="resetcek">Ulangi pengecekan</button></div>`;
+      h+=`<div class="bottombar"><div class="bb-in"><div class="bb-prog"><b>${c.done}/${c.n}</b> barang dicek${c.bad?` · <span style="color:var(--bad)">${c.bad} bermasalah</span>`:""}<div class="bar"><i style="width:${c.n?Math.round(c.done/c.n*100):0}%"></i></div></div>${c.bad?`<button class="btn primary" data-act="sendissue" style="flex:none">${ICON.wa}Laporkan</button>`:""}</div></div>`;
     }
   }
-  if(store.canWrite)h+=`<div class="actions" style="margin-top:36px" id="delzone"><button class="btn danger" data-act="delb">Hapus kiriman ini</button></div>`;
+  h+=`<div class="more"><div class="label">Lainnya</div><div class="actions" style="margin:6px 0 0">
+    <button class="btn" data-act="reuse">${ICON.repeat}Pakai daftar ini lagi</button>
+    ${locked?`<button class="btn" data-act="unlock">${ICON.unlock}Buka kunci</button>`:""}
+    <button class="btn danger" data-act="delb">Hapus kiriman</button></div>
+    ${(b.riwayat||[]).length?`<ul class="log">${b.riwayat.map(r=>`<li><span class="mono">${esc(fmtDT(r.t))}</span> ${esc(r.teks)}</li>`).join("")}</ul>`:""}
+    <div id="confirmzone"></div></div>`;
   return h;
 }
+function logEvent(b,teks){(b.riwayat=b.riwayat||[]).push({t:Date.now(),teks})}
 function bindBatch(b){
-  const on=(sel,fn)=>document.querySelectorAll(sel).forEach(el=>el.onclick=()=>fn(el));
+  const on=(sel,fn)=>$$(sel).forEach(el=>el.onclick=()=>fn(el));
+  const item=id=>b.items.find(i=>i.id===id);
   on('[data-act="back"]',()=>go("list"));
-  on("[data-tab]",el=>{ui.tab=el.dataset.tab;render()});
+  on("[data-tab]",el=>{ui.tab=el.dataset.tab;render();const t=$(".tabs");if(t&&t.getBoundingClientRect().top<0)t.scrollIntoView()});
   on('[data-act="editb"]',()=>openBatchSheet(b));
   on('[data-act="additem"]',()=>openItemSheet(b,null));
-  on("[data-edit]",el=>openItemSheet(b,b.items.find(i=>i.id===el.dataset.edit)));
-  on("[data-photo]",el=>{const it=b.items.find(i=>i.id===el.dataset.photo);if(it&&(it.foto||[]).length)lightbox(it.foto,0)});
-  on("[data-ok]",el=>{const it=b.items.find(i=>i.id===el.dataset.ok);it.cek=it.cek==="ok"?null:"ok";it.cekJumlah=null;it.cekCatatan="";saveBatch(b)});
-  on("[data-bad]",el=>openIssueSheet(b,b.items.find(i=>i.id===el.dataset.bad)));
-  on('[data-act="resetcek"]',()=>{b.items.forEach(i=>{i.cek=null;i.cekJumlah=null;i.cekCatatan=""});saveBatch(b)});
-  on('[data-act="copy"]',()=>copyText(summaryText(b)));
-  on('[data-act="delb"]',()=>{
-    const z=$("#delzone");
-    z.innerHTML=`<div class="confirm" style="width:100%"><b>Hapus kiriman ${esc(b.laundry||"")} beserta semua foto?</b><span class="muted">Ini tidak bisa dibatalkan.</span>
-      <div class="actions" style="margin:0"><button class="btn danger" id="delyes">Ya, hapus</button><button class="btn" id="delno">Batal</button></div></div>`;
-    $("#delyes").onclick=async()=>{go("list");await deleteBatch(b);toast("Kiriman dihapus");render()};
-    $("#delno").onclick=()=>render();
+  on('[data-act="quick"]',()=>openQuickSheet(b));
+  on("[data-edit]",el=>openItemSheet(b,item(el.dataset.edit)));
+  on("[data-photos]",el=>{const [k,id]=el.dataset.photos.split(":");const it=item(id);const refs=k==="a"?(it.cekFoto||[]):(it.foto||[]);if(refs.length)lightbox(refs,+(el.dataset.idx||0))});
+  on("[data-pile]",el=>lightbox(b.fotoUmum,+el.dataset.pile));
+  on('[data-act="pilecam"]',()=>pickPhotos(async files=>{b.fotoUmum=b.fotoUmum||[];for(const f of files){try{b.fotoUmum.push(await savePhoto(f))}catch(e){toast("Foto gagal disimpan")}}saveBatch(b)},true));
+  on("[data-ok]",el=>{const it=item(el.dataset.ok);it.cek=it.cek==="ok"?null:"ok";if(it.cek==="ok"){it.cekJumlah=null;it.cekCatatan=""}saveBatch(b)});
+  on("[data-bad]",el=>openIssueSheet(b,item(el.dataset.bad)));
+  on('[data-act="allok"]',()=>confirmInline(`Tandai ${b.items.filter(i=>!i.cek).length} barang yang belum dicek sebagai cocok?`,"Ya, cocok semua",false,()=>{b.items.forEach(i=>{if(!i.cek)i.cek="ok"});saveBatch(b);toast("Semua ditandai cocok")}));
+  on('[data-act="resetcek"]',()=>confirmInline("Hapus semua tanda cek dan ulangi dari awal?","Ulangi",true,()=>{b.items.forEach(i=>{i.cek=null;i.cekJumlah=null;i.cekCatatan=""});saveBatch(b)}));
+  on('[data-act="lock"]',()=>openLockSheet(b));
+  on('[data-act="sendlist"]',()=>openWA(waNumber(b.wa),daftarText(b)));
+  on('[data-act="copylist"]',()=>copyText(daftarText(b),"Daftar disalin"));
+  on('[data-act="sendissue"]',()=>openWA(waNumber(b.wa),masalahText(b)));
+  on('[data-act="unlock"]',()=>confirmInline("Buka kunci catatan? Waktu pembukaan kunci akan tercatat di riwayat kiriman.","Buka kunci",true,()=>{logEvent(b,"Kunci dibuka");b.dikunci=null;saveBatch(b);toast("Kunci dibuka")}));
+  on('[data-act="reuse"]',()=>{
+    const nb={id:uid(),laundry:b.laundry,wa:b.wa||"",nota:"",tglAntar:today(),tglAmbil:"",berat:"",harga:"",catatan:"",dibuat:Date.now(),fotoUmum:[],
+      items:(b.items||[]).map(i=>({id:uid(),jenis:i.jenis,warna:i.warna||"",jumlah:i.jumlah||1,catatan:"",perawatan:[...(i.perawatan||[])],foto:[],cek:null}))};
+    saveBatch(nb);go("batch",nb.id,"catatan");toast("Daftar disalin. Tambahkan foto baru bila perlu.");
   });
+  on('[data-act="delb"]',()=>confirmInline(`Hapus kiriman ${b.laundry||""} beserta semua fotonya? Ini tidak bisa dibatalkan.`,"Ya, hapus",true,async()=>{go("list");await deleteBatch(b);toast("Kiriman dihapus");render()}));
 }
-function summaryText(b){
-  const c=counts(b);
-  const lines=[`Cek cucian – ${b.laundry||"Laundry"}${b.nota?" (nota #"+b.nota+")":""}`,`Diantar ${fmtDate(b.tglAntar)}, total ${c.pcs} pcs.`,"","Tidak sesuai:"];
-  b.items.filter(i=>i.cek==="masalah").forEach(i=>{
-    const kembali=(i.cekJumlah!=null&&i.cekJumlah!=="")?` – kembali ${i.cekJumlah} dari ${i.jumlah||1}`:"";
-    lines.push(`- ${i.jenis}${i.warna?" ("+i.warna+")":""} ×${i.jumlah||1}${kembali}${i.cekCatatan?". "+i.cekCatatan:""}`);
-  });
-  return lines.join("\n");
+function confirmInline(msg,yes,danger,fn){
+  const z=$("#confirmzone");if(!z)return;
+  z.innerHTML=`<div class="confirm ${danger?"":"neutral"}"><b>${esc(msg)}</b><div class="actions" style="margin:0"><button class="btn ${danger?"danger":"primary"}" id="cfYes">${esc(yes)}</button><button class="btn" id="cfNo">Batal</button></div></div>`;
+  z.scrollIntoView({block:"center",behavior:"smooth"});
+  $("#cfYes").onclick=()=>{z.innerHTML="";fn()};$("#cfNo").onclick=()=>{z.innerHTML=""};
 }
-async function copyText(t){
-  try{await navigator.clipboard.writeText(t);toast("Ringkasan disalin")}
-  catch(e){
-    openSheet(`<div class="sh"><h2>Salin ringkasan</h2><button class="btn ghost" data-close>Tutup</button></div>
-      <p class="muted" style="margin:0">Tekan lama lalu pilih Salin.</p><textarea id="cp" rows="8" readonly>${esc(t)}</textarea>`);
-    const ta=$("#cp");ta.focus();ta.select();
-  }
+async function copyText(t,okMsg){
+  try{await navigator.clipboard.writeText(t);toast(okMsg||"Disalin")}
+  catch(e){openSheet(`<div class="sh"><h2>Salin teks</h2><button class="btn ghost" data-close>Tutup</button></div><p class="muted" style="margin:0">Tekan lama lalu pilih Salin.</p><textarea id="cp" rows="10" readonly>${esc(t)}</textarea>`);const ta=$("#cp");ta.focus();ta.select()}
 }
 
-/* ---------- Sheets ---------- */
+/* ================= Lembar isian ================= */
 function openSheet(html,onOpen){
-  sheetOpen=true;
+  sheetOpen=true;sheetRedraw=null;
   const ov=$("#overlay");
   ov.innerHTML=`<div class="scrim"><div class="sheet" role="dialog" aria-modal="true">${html}</div></div>`;
   const scrim=ov.firstElementChild;
   scrim.addEventListener("click",e=>{if(e.target===scrim)closeSheet()});
-  ov.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeSheet);
+  ov.querySelectorAll("[data-close]").forEach(x=>x.onclick=closeSheet);
   onOpen&&onOpen(ov.querySelector(".sheet"));
-  const f=ov.querySelector("input,textarea,button");f&&f.focus({preventScroll:true});
 }
-function closeSheet(){sheetOpen=false;$("#overlay").innerHTML="";render()}
+function closeSheet(){sheetOpen=false;sheetRedraw=null;$("#overlay").innerHTML="";render()}
+function hideSheet(){sheetOpen=false;sheetRedraw=null;$("#overlay").innerHTML=""}
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#overlay").innerHTML)closeSheet()});
+
+let pickCb=null;
+function pickPhotos(cb,camera){pickCb=cb;(camera?$("#fileIn"):$("#fileInGallery")).click()}
+$("#fileIn").addEventListener("change",e=>{const f=[...e.target.files];e.target.value="";pickCb&&pickCb(f)});
+$("#fileInGallery").addEventListener("change",e=>{const f=[...e.target.files];e.target.value="";pickCb&&pickCb(f)});
+
+/* Komponen pengelola foto di dalam lembar isian */
+function photoField(arr,elId,onBusy){
+  let busy=0;const removed=[];
+  const draw=()=>{
+    const ph=$("#"+elId);if(!ph)return;
+    ph.innerHTML=arr.map((r,i)=>{const s=photoSrc(r);return `<div class="ph">${s?`<img src="${esc(s)}" alt="Foto ${i+1}">`:""}<button data-rm="${i}" aria-label="Hapus foto ${i+1}">✕</button></div>`}).join("")
+      +Array.from({length:busy},()=>`<div class="ph loading"></div>`).join("")
+      +`<button class="addph" data-cam="1">${ICON.cam}Kamera</button><button class="addph" data-cam="0">${ICON.img}Galeri</button>`;
+    ph.querySelectorAll("[data-rm]").forEach(x=>x.onclick=()=>{removed.push(...arr.splice(+x.dataset.rm,1));draw()});
+    ph.querySelectorAll("[data-cam]").forEach(x=>x.onclick=()=>pickPhotos(handle,x.dataset.cam==="1"));
+    onBusy&&onBusy(busy>0);
+  };
+  async function handle(files){for(const f of files){busy++;draw();try{arr.push(await savePhoto(f))}catch(e){toast("Foto gagal disimpan: "+(e&&e.message||"coba lagi"))}finally{busy--;draw()}}}
+  return {draw,removed,busy:()=>busy>0};
+}
 
 function openBatchSheet(b){
   const isNew=!b;
-  const d=b||{laundry:"",nota:"",tglAntar:today(),tglAmbil:"",berat:"",harga:"",catatan:""};
-  openSheet(`<div class="sh"><h2>${isNew?"Kiriman baru":"Ubah info kiriman"}</h2><button class="btn ghost" data-close>Batal</button></div>
-    <div class="field"><label for="fLaundry">Nama laundry</label><input type="text" id="fLaundry" value="${esc(d.laundry)}" placeholder="mis. Laundry Bersih Jaya"></div>
+  const d=b||{laundry:"",wa:"",nota:"",tglAntar:today(),tglAmbil:"",berat:"",harga:"",catatan:""};
+  const known=knownLaundries();
+  $("#laundryList").innerHTML=[...known.keys()].map(n=>`<option value="${esc(n)}"></option>`).join("");
+  openSheet(`<div class="sh"><h2>${isNew?"Catat cucian baru":"Ubah info kiriman"}</h2><button class="btn ghost" data-close>Batal</button></div>
+    <div class="field"><label for="fLaundry">Nama laundry</label><input type="text" id="fLaundry" list="laundryList" autocomplete="off" value="${esc(d.laundry)}" placeholder="mis. Laundry Bersih Jaya"></div>
+    <div class="field"><label for="fWa">No. WhatsApp laundry (opsional)</label><input type="tel" id="fWa" inputmode="tel" value="${esc(d.wa||"")}" placeholder="mis. 0812 3456 7890"><small class="muted">Untuk mengirim daftar cucian dan laporan langsung ke laundry.</small></div>
     <div class="grid2">
       <div class="field"><label for="fAntar">Tanggal antar</label><input type="date" id="fAntar" value="${esc(d.tglAntar)}"></div>
       <div class="field"><label for="fAmbil">Janji ambil</label><input type="date" id="fAmbil" value="${esc(d.tglAmbil)}"></div>
@@ -602,179 +722,220 @@ function openBatchSheet(b){
       <div class="field"><label for="fBerat">Berat kg (opsional)</label><input type="number" step="0.1" min="0" inputmode="decimal" id="fBerat" value="${esc(d.berat)}"></div>
     </div>
     <div class="field"><label for="fHarga">Harga Rp (opsional)</label><input type="number" min="0" step="500" inputmode="numeric" id="fHarga" value="${esc(d.harga)}"></div>
-    <div class="field"><label for="fCat">Catatan (opsional)</label><textarea id="fCat" placeholder="mis. Paket express, setrika saja untuk kemeja">${esc(d.catatan)}</textarea></div>
-    <button class="btn primary" id="fSave">${isNew?"Simpan & catat baju":"Simpan"}</button>`,()=>{
+    <div class="field"><label for="fCat">Catatan (opsional)</label><textarea id="fCat" placeholder="mis. Paket express 1 hari">${esc(d.catatan)}</textarea></div>
+    <button class="btn primary" id="fSave">${isNew?"Lanjut catat baju":"Simpan"}</button>`,()=>{
+      $("#fLaundry").addEventListener("change",()=>{const w=known.get($("#fLaundry").value.trim());if(w&&!$("#fWa").value)$("#fWa").value=w});
       $("#fSave").onclick=()=>{
-        const nb=b?b:{id:uid(),items:[],dibuat:Date.now()};
-        nb.laundry=$("#fLaundry").value.trim()||"Laundry";
-        nb.tglAntar=$("#fAntar").value;nb.tglAmbil=$("#fAmbil").value;
-        nb.nota=$("#fNota").value.trim();nb.berat=$("#fBerat").value;nb.harga=$("#fHarga").value;
-        nb.catatan=$("#fCat").value.trim();
-        sheetOpen=false;$("#overlay").innerHTML="";
-        ui.view="batch";ui.id=nb.id;if(isNew)ui.tab="catatan";
-        saveBatch(nb);
-        if(isNew)setTimeout(()=>openItemSheet(nb,null),50);
+        const nb=b||{id:uid(),items:[],fotoUmum:[],dibuat:Date.now()};
+        nb.laundry=$("#fLaundry").value.trim()||"Laundry";nb.wa=$("#fWa").value.trim();
+        nb.tglAntar=$("#fAntar").value||today();nb.tglAmbil=$("#fAmbil").value;
+        nb.nota=$("#fNota").value.trim();nb.berat=$("#fBerat").value;nb.harga=$("#fHarga").value;nb.catatan=$("#fCat").value.trim();
+        hideSheet();ui.view="batch";ui.id=nb.id;if(isNew)ui.tab="catatan";
+        saveBatch(nb);window.scrollTo(0,0);
+        if(isNew)setTimeout(()=>openStartChoice(nb),60);
       };
     });
 }
-
-let pickCb=null;
-$("#fileIn").addEventListener("change",e=>{const f=[...e.target.files];e.target.value="";pickCb&&pickCb(f)});
-$("#fileInGallery").addEventListener("change",e=>{const f=[...e.target.files];e.target.value="";pickCb&&pickCb(f)});
-
+function openStartChoice(b){
+  openSheet(`<div class="sh"><h2>Cara mencatat</h2><button class="btn ghost" data-close>Nanti</button></div>
+    <button class="choice" id="chQuick">${ICON.bolt}<div><b>Isi cepat</b><span>Ketuk jumlah per jenis baju dan ambil satu foto tumpukan. Cocok untuk cucian kiloan yang banyak.</span></div></button>
+    <button class="choice" id="chOne">${ICON.cam}<div><b>Satu per satu dengan foto</b><span>Foto dan catat tiap baju beserta warna dan kondisinya. Cocok untuk baju berharga.</span></div></button>
+    <p class="muted small" style="margin:0">Keduanya bisa digabung kapan saja.</p>`,()=>{
+      $("#chQuick").onclick=()=>{hideSheet();openQuickSheet(b)};
+      $("#chOne").onclick=()=>{hideSheet();openItemSheet(b,null)};
+    });
+}
+function openQuickSheet(b){
+  const cnt={};const fu=b.fotoUmum=b.fotoUmum||[];
+  const pf=photoField(fu,"qPhs",busy=>{const s=$("#qSave");if(s)s.disabled=busy});
+  const total=()=>Object.values(cnt).reduce((s,n)=>s+n,0);
+  openSheet(`<div class="sh"><h2>Isi cepat</h2><button class="btn ghost" data-close>Batal</button></div>
+    <div class="field"><label>Foto tumpukan (opsional)</label><div class="photos" id="qPhs"></div></div>
+    <div class="field"><label>Jumlah per jenis</label><div class="qgrid">${JENIS.filter(j=>j!=="Lainnya").map(j=>`<div class="qrow" data-j="${esc(j)}"><span>${esc(j)}</span><div class="qstep"><button type="button" data-d="-1" aria-label="Kurangi ${esc(j)}">−</button><b>0</b><button type="button" data-d="1" aria-label="Tambah ${esc(j)}">+</button></div></div>`).join("")}</div></div>
+    <button class="btn primary" id="qSave">Tambahkan 0 pcs</button>`,()=>{
+      pf.draw();sheetRedraw=pf.draw;
+      $$(".qrow").forEach(r=>r.querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+        const j=r.dataset.j;cnt[j]=Math.max(0,(cnt[j]||0)+(+btn.dataset.d));
+        r.querySelector("b").textContent=cnt[j];r.classList.toggle("on",cnt[j]>0);
+        $("#qSave").textContent=`Tambahkan ${total()} pcs`;
+      }));
+      $("#qSave").onclick=()=>{
+        if(pf.busy())return;
+        for(const [j,n] of Object.entries(cnt)){if(!n)continue;
+          const ex=b.items.find(i=>i.jenis===j&&!i.warna&&!(i.foto||[]).length&&!i.catatan);
+          if(ex)ex.jumlah=(Number(ex.jumlah)||0)+n;else b.items.push({id:uid(),jenis:j,warna:"",jumlah:n,catatan:"",perawatan:[],foto:[],cek:null});
+        }
+        pf.removed.forEach(deletePhoto);
+        hideSheet();ui.tab="catatan";saveBatch(b);if(total())toast(`${total()} pcs ditambahkan`);
+      };
+    });
+}
 function openItemSheet(b,it){
   const isNew=!it;
-  const d=it?JSON.parse(JSON.stringify(it)):{id:uid(),jenis:"",warna:"",jumlah:1,catatan:"",foto:[],cek:null};
-  const removed=[];let uploading=0;
-  const draw=()=>{
-    const ph=$("#phs");if(!ph)return;
-    ph.innerHTML=d.foto.map((r,i)=>{const s=photoSrc(r);return `<div class="ph">${s?`<img src="${esc(s)}" alt="Foto ${i+1}">`:""}<button data-rm="${i}" aria-label="Hapus foto ${i+1}">✕</button></div>`}).join("")
-      +Array.from({length:uploading},()=>`<div class="ph loading"></div>`).join("")
-      +`<button class="addph" id="addCam">${ICON.cam}Kamera</button><button class="addph" id="addGal">${ICON.img}Galeri</button>`;
-    ph.querySelectorAll("[data-rm]").forEach(x=>x.onclick=()=>{removed.push(...d.foto.splice(+x.dataset.rm,1));draw()});
-    $("#addCam").onclick=()=>{pickCb=handle;$("#fileIn").click()};
-    $("#addGal").onclick=()=>{pickCb=handle;$("#fileInGallery").click()};
-    const sv=$("#iSave");if(sv)sv.disabled=uploading>0;
-  };
-  async function handle(files){
-    for(const f of files){
-      uploading++;draw();
-      try{d.foto.push(await savePhoto(f))}
-      catch(e){toast("Foto gagal disimpan: "+(e&&e.code==="quota_exceeded"?"kuota penyimpanan penuh":(e&&e.message||"coba lagi")))}
-      finally{uploading--;draw()}
-    }
-  }
+  const d=it?JSON.parse(JSON.stringify(it)):{id:uid(),jenis:"",warna:"",jumlah:1,catatan:"",perawatan:[],foto:[],cek:null};
+  d.perawatan=d.perawatan||[];
+  const pf=photoField(d.foto,"phs",busy=>{["iSave","iSaveNext"].forEach(id=>{const s=$("#"+id);if(s)s.disabled=busy})});
   openSheet(`<div class="sh"><h2>${isNew?"Tambah baju":"Ubah baju"}</h2><button class="btn ghost" data-close>Batal</button></div>
     <div class="field"><label>Foto</label><div class="photos" id="phs"></div></div>
     <div class="field"><label for="iJenis">Jenis</label>
       <div class="presets" id="presets">${JENIS.map(j=>`<button type="button" class="${d.jenis===j?"on":""}">${esc(j)}</button>`).join("")}</div>
-      <input type="text" id="iJenis" value="${esc(d.jenis)}" placeholder="atau ketik sendiri">
-    </div>
-    <div class="field"><label for="iWarna">Warna / merek / ciri</label><input type="text" id="iWarna" value="${esc(d.warna)}" placeholder="mis. Biru dongker, merek Uniqlo, ada logo di dada"></div>
+      <input type="text" id="iJenis" value="${esc(d.jenis)}" placeholder="atau ketik sendiri"></div>
+    <div class="field"><label for="iWarna">Warna / merek / ciri</label><input type="text" id="iWarna" value="${esc(d.warna)}" placeholder="mis. Biru dongker, ada logo di dada"></div>
     <div class="field"><label for="iJml">Jumlah</label><div class="stepper"><button type="button" id="iMin" aria-label="Kurangi">−</button><input type="number" min="1" inputmode="numeric" id="iJml" value="${esc(d.jumlah||1)}"><button type="button" id="iPlus" aria-label="Tambah">+</button><span class="muted">pcs</span></div></div>
     <div class="field"><label for="iCat">Kondisi sebelum dicuci</label><textarea id="iCat" placeholder="mis. Noda kopi di lengan kanan, kancing kedua longgar">${esc(d.catatan)}</textarea></div>
+    <div class="field"><label>Pesan perawatan untuk laundry</label><div class="presets" id="rawat">${RAWAT.map(r=>`<button type="button" class="${d.perawatan.includes(r)?"on":""}" aria-pressed="${d.perawatan.includes(r)}">${esc(r)}</button>`).join("")}</div></div>
     <div class="actions" style="margin:0">
       <button class="btn primary" id="iSave">${isNew?"Simpan baju":"Simpan perubahan"}</button>
-      ${isNew?`<button class="btn" id="iSaveNext">${ICON.plus}Tambah lagi</button>`:`<button class="btn danger" id="iDel">Hapus baju</button>`}
+      ${isNew?`<button class="btn" id="iSaveNext">${ICON.plus}Tambah lagi</button>`:`<button class="btn danger" id="iDel">Hapus</button>`}
     </div>`,()=>{
-      draw();
-      document.querySelectorAll("#presets button").forEach(x=>x.onclick=()=>{
-        document.querySelectorAll("#presets button").forEach(y=>y.classList.remove("on"));x.classList.add("on");$("#iJenis").value=x.textContent});
-      $("#iJenis").oninput=()=>document.querySelectorAll("#presets button").forEach(y=>y.classList.toggle("on",y.textContent===$("#iJenis").value));
+      pf.draw();sheetRedraw=pf.draw;
+      $$("#presets button").forEach(x=>x.onclick=()=>{$$("#presets button").forEach(y=>y.classList.remove("on"));x.classList.add("on");$("#iJenis").value=x.textContent});
+      $("#iJenis").oninput=()=>$$("#presets button").forEach(y=>y.classList.toggle("on",y.textContent===$("#iJenis").value));
+      $$("#rawat button").forEach(x=>x.onclick=()=>{const on=!x.classList.contains("on");x.classList.toggle("on",on);x.setAttribute("aria-pressed",on)});
       $("#iMin").onclick=()=>{$("#iJml").value=Math.max(1,(+$("#iJml").value||1)-1)};
       $("#iPlus").onclick=()=>{$("#iJml").value=(+$("#iJml").value||0)+1};
-      const commit=(next)=>{
-        if(uploading)return;
+      const commit=next=>{
+        if(pf.busy())return;
         d.jenis=$("#iJenis").value.trim()||"Pakaian";d.warna=$("#iWarna").value.trim();
         d.jumlah=Math.max(1,parseInt($("#iJml").value,10)||1);d.catatan=$("#iCat").value.trim();
+        d.perawatan=$$("#rawat button.on").map(x=>x.textContent);
         const i=b.items.findIndex(x=>x.id===d.id);if(i<0)b.items.push(d);else b.items[i]=d;
-        removed.forEach(deletePhoto);
-        sheetOpen=false;$("#overlay").innerHTML="";ui.tab="catatan";
-        saveBatch(b);
+        pf.removed.forEach(deletePhoto);
+        hideSheet();ui.tab="catatan";saveBatch(b);
         if(next)setTimeout(()=>openItemSheet(b,null),30);else toast("Baju dicatat");
       };
       $("#iSave").onclick=()=>commit(false);
       const nx=$("#iSaveNext");if(nx)nx.onclick=()=>commit(true);
       const del=$("#iDel");if(del)del.onclick=()=>{
         del.outerHTML=`<button class="btn danger" id="iDelYes">Yakin hapus?</button>`;
-        $("#iDelYes").onclick=()=>{b.items=b.items.filter(x=>x.id!==d.id);(it.foto||[]).forEach(deletePhoto);sheetOpen=false;$("#overlay").innerHTML="";saveBatch(b)};
+        $("#iDelYes").onclick=()=>{b.items=b.items.filter(x=>x.id!==d.id);(it.foto||[]).forEach(deletePhoto);hideSheet();saveBatch(b)};
       };
     });
 }
+function openLockSheet(b){
+  const c=counts(b),num=waNumber(b.wa);
+  openSheet(`<div class="sh"><h2>Antar & kunci catatan</h2><button class="btn ghost" data-close>Batal</button></div>
+    <div class="locksum"><div><b class="mono">${c.pcs}</b><span>pcs</span></div><div><b class="mono">${c.n}</b><span>jenis</span></div><div><b class="mono">${allRefs(b).length}</b><span>foto</span></div></div>
+    <p style="margin:0">Setelah dikunci, daftar barang tidak bisa diubah dan waktu antar tercatat. Kirim daftar ini ke laundry supaya mereka punya catatan yang sama dengan Anda.</p>
+    ${num?"":`<div class="field"><label for="lWa">No. WhatsApp laundry (opsional)</label><input type="tel" id="lWa" inputmode="tel" placeholder="mis. 0812 3456 7890"><small class="muted">Kosongkan untuk memilih kontak sendiri di WhatsApp.</small></div>`}
+    <details class="preview"><summary>Lihat pesan yang akan dikirim</summary><pre>${esc(daftarText(Object.assign({},b,{dikunci:Date.now()})))}</pre></details>
+    <div class="actions" style="margin:0">
+      <button class="btn primary" id="lSend">${ICON.wa}Kunci & kirim WhatsApp</button>
+      <button class="btn" id="lOnly">${ICON.lock}Kunci saja</button>
+    </div>`,()=>{
+      const doLock=()=>{const w=$("#lWa");if(w&&w.value.trim())b.wa=w.value.trim();b.dikunci=Date.now();logEvent(b,"Catatan dikunci saat antar");hideSheet();saveBatch(b)};
+      $("#lSend").onclick=()=>{doLock();openWA(waNumber(b.wa),daftarText(b));toast("Catatan dikunci")};
+      $("#lOnly").onclick=()=>{doLock();toast("Catatan dikunci")};
+    });
+}
 function openIssueSheet(b,it){
+  const after=it.cekFoto=it.cekFoto||[];const before=it.foto||[];
+  const pf=photoField(after,"kPhs",busy=>{const s=$("#kSave");if(s)s.disabled=busy});
   openSheet(`<div class="sh"><h2>Ada masalah: ${esc(it.jenis)}</h2><button class="btn ghost" data-close>Batal</button></div>
-    <div class="field"><label for="kJml">Jumlah yang kembali (dari ${esc(it.jumlah||1)})</label><input type="number" min="0" inputmode="numeric" id="kJml" value="${esc(it.cekJumlah??"")}" placeholder="mis. 2"></div>
-    <div class="field"><label>Masalah</label><div class="presets" id="kPre">${["Hilang","Tertukar","Luntur","Robek","Noda belum hilang","Masih bau","Kancing lepas","Menyusut"].map(x=>`<button type="button">${x}</button>`).join("")}</div></div>
+    ${before.length?`<div class="field"><label>Foto sebelum diantar</label><div class="photos">${before.map(r=>{const s=photoSrc(r);return `<div class="ph">${s?`<img src="${esc(s)}" alt="">`:""}</div>`}).join("")}</div></div>`:""}
+    <div class="field"><label>Foto kondisi sekarang (bukti)</label><div class="photos" id="kPhs"></div></div>
+    <div class="field"><label for="kJml">Jumlah yang kembali (dari ${esc(it.jumlah||1)})</label><input type="number" min="0" inputmode="numeric" id="kJml" value="${esc(it.cekJumlah??"")}" placeholder="mis. ${Math.max(0,(it.jumlah||1)-1)}"></div>
+    <div class="field"><label>Masalah</label><div class="presets" id="kPre">${MASALAH.map(x=>`<button type="button">${x}</button>`).join("")}</div></div>
     <div class="field"><label for="kCat">Keterangan</label><textarea id="kCat" placeholder="mis. Kemeja putih berubah jadi kebiruan">${esc(it.cekCatatan||"")}</textarea></div>
     <button class="btn danger" id="kSave">Tandai bermasalah</button>`,()=>{
-      document.querySelectorAll("#kPre button").forEach(x=>x.onclick=()=>{const t=$("#kCat");t.value=t.value?(t.value.replace(/\s+$/,"")+", "+x.textContent.toLowerCase()):x.textContent});
+      pf.draw();sheetRedraw=pf.draw;
+      $$("#kPre button").forEach(x=>x.onclick=()=>{const t=$("#kCat");t.value=t.value?(t.value.replace(/[\s,]+$/,"")+", "+x.textContent.toLowerCase()):x.textContent});
       $("#kSave").onclick=()=>{
+        if(pf.busy())return;
         it.cek="masalah";const v=$("#kJml").value;it.cekJumlah=v===""?null:Math.max(0,parseInt(v,10)||0);
-        it.cekCatatan=$("#kCat").value.trim();sheetOpen=false;$("#overlay").innerHTML="";saveBatch(b);
+        it.cekCatatan=$("#kCat").value.trim();pf.removed.forEach(deletePhoto);hideSheet();saveBatch(b);
       };
     });
 }
 function lightbox(refs,i){
-  const ov=$("#overlay");
+  const ov=$("#overlay");sheetOpen=true;
   const show=()=>{const s=photoSrc(refs[i]);
-    ov.innerHTML=`<div class="lightbox" role="dialog" aria-label="Foto">${s?`<img src="${esc(s)}" alt="Foto ${i+1} dari ${refs.length}">`:""}<button class="btn">Tutup</button></div>`;
-    const lb=ov.firstElementChild;
-    lb.onclick=e=>{if(e.target.tagName==="IMG"&&refs.length>1){i=(i+1)%refs.length;show()}else{ov.innerHTML=""}};
-  };show();
+    ov.innerHTML=`<div class="lightbox" role="dialog" aria-label="Foto">${s?`<img src="${esc(s)}" alt="Foto ${i+1} dari ${refs.length}">`:""}${refs.length>1?`<span class="lb-n">${i+1} / ${refs.length} · ketuk foto untuk berikutnya</span>`:""}<button class="btn">Tutup</button></div>`;
+    ov.firstElementChild.onclick=e=>{if(e.target.tagName==="IMG"&&refs.length>1){i=(i+1)%refs.length;show()}else{ov.innerHTML="";sheetOpen=false}};
+  };sheetRedraw=show;show();
 }
-/* ---------- Cadangkan & pulihkan ---------- */
-const LB_KEY="cekcucian.lastBackup";
-function lastBackup(){try{return Number(localStorage.getItem(LB_KEY))||0}catch(e){return 0}}
+
+/* ================= Panduan pengguna baru ================= */
+const SLIDES=[
+  {t:"Foto & catat sebelum diantar",p:"Foto baju satu per satu, atau ketuk jumlah per jenis lalu ambil satu foto tumpukan. Catat juga noda atau kerusakan yang sudah ada.",ic:ICON.cam},
+  {t:"Kirim daftar ke laundry",p:"Saat mengantar, kirim daftar lewat WhatsApp ke laundry. Catatan lalu dikunci, lengkap dengan waktu dan foto bercap tanggal, jadi bisa dipakai sebagai bukti.",ic:ICON.wa},
+  {t:"Cek sebelum dibawa pulang",p:"Saat mengambil, cocokkan tiap barang. Kalau ada yang hilang atau rusak, foto kondisinya dan langsung laporkan ke laundry dari aplikasi.",ic:ICON.check}
+];
+function openOnboarding(){
+  let i=0;
+  const draw=()=>{
+    const s=SLIDES[i],last=i===SLIDES.length-1;
+    openSheet(`<div class="ob">
+      <div class="ob-ic">${s.ic}</div>
+      <div class="ob-dots">${SLIDES.map((_,k)=>`<i class="${k===i?"on":""}"></i>`).join("")}</div>
+      <div class="label">Langkah ${i+1} dari ${SLIDES.length}</div>
+      <h2>${esc(s.t)}</h2><p>${esc(s.p)}</p>
+      ${last?`<p class="muted small">Semua catatan dan foto tersimpan di HP Anda sendiri, tidak dikirim ke mana pun. Tidak perlu daftar atau login.</p>`:""}
+    </div>
+    <div class="actions" style="margin:0">${i?`<button class="btn" id="obBack">Kembali</button>`:`<button class="btn ghost" id="obSkip">Lewati</button>`}<button class="btn primary" id="obNext">${last?"Mulai":"Lanjut"}</button></div>`,()=>{
+      const end=()=>{lsSet(OB_KEY,"1");closeSheet()};
+      $("#obNext").onclick=()=>{if(last)end();else{i++;draw()}};
+      const bk=$("#obBack");if(bk)bk.onclick=()=>{i--;draw()};
+      const sk=$("#obSkip");if(sk)sk.onclick=end;
+    });
+  };draw();
+}
+$("#helpBtn").onclick=openOnboarding;
+
+/* ================= Cadangkan & pulihkan ================= */
+function lastBackup(){return Number(lsGet(LB_KEY,0))||0}
 function daysSince(t){return Math.max(1,Math.floor((Date.now()-t)/864e5))}
 function backupDue(){const t=lastBackup();return !t||Date.now()-t>7*864e5}
-function fmtDateTime(t){return new Date(t).toLocaleString("id-ID",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})}
+const blobToDataURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(b)});
+const sizeTxt=b=>b>1048576?(b/1048576).toFixed(1).replace(".",",")+" MB":Math.max(1,Math.round(b/1024))+" KB";
 async function buildBackup(){
   const foto={};let n=0;
-  for(const b of store.batches)for(const it of b.items||[])for(const r of it.foto||[]){
+  for(const b of store.batches)for(const r of allRefs(b)){
     if(r.i&&!foto[r.i]){const blob=await idbDo("readonly",s=>s.get(r.i));if(blob){foto[r.i]=await blobToDataURL(blob);n++}}
   }
-  const data={app:"cek-cucian",versi:1,dibuat:new Date().toISOString(),kiriman:store.batches,foto};
-  const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+  const blob=new Blob([JSON.stringify({app:"cek-cucian",versi:2,dibuat:new Date().toISOString(),kiriman:store.batches,foto})],{type:"application/json"});
   const name="cek-cucian-cadangan-"+today()+".json";
   return {blob,name,file:new File([blob],name,{type:"application/json"}),nFoto:n};
 }
-const sizeTxt=b=>b>1048576?(b/1048576).toFixed(1).replace(".",",")+" MB":Math.max(1,Math.round(b/1024))+" KB";
-function markBackedUp(){try{localStorage.setItem(LB_KEY,String(Date.now()))}catch(e){}}
 async function openBackupSheet(){
   openSheet(`<div class="sh"><h2>Cadangkan data</h2><button class="btn ghost" data-close>Tutup</button></div><p class="muted" id="bkInfo" style="margin:0">Menyiapkan file cadangan…</p><div class="actions" id="bkAct" style="margin:0"></div>`);
-  let bk;
-  try{bk=await buildBackup()}catch(e){$("#bkInfo").textContent="Gagal menyiapkan cadangan: "+(e&&e.message||"coba lagi");return}
+  let bk;try{bk=await buildBackup()}catch(e){$("#bkInfo").textContent="Gagal menyiapkan cadangan: "+(e&&e.message||"coba lagi");return}
   if(!$("#bkInfo"))return;
-  const c=store.batches.length;
-  $("#bkInfo").innerHTML=`<b>${c} kiriman, ${bk.nFoto} foto</b> · ukuran ${esc(sizeTxt(bk.blob.size))}<br>Nama file: <span class="mono">${esc(bk.name)}</span><br><br>Pilih <b>Bagikan</b> untuk menyimpan ke Google Drive atau mengirim ke WhatsApp sendiri. Pilih <b>Unduh</b> untuk menyimpan ke folder Download.`;
+  $("#bkInfo").innerHTML=`<b>${store.batches.length} kiriman, ${bk.nFoto} foto</b> · ukuran ${esc(sizeTxt(bk.blob.size))}<br>Nama file: <span class="mono">${esc(bk.name)}</span><br><br>Pilih <b>Bagikan</b> untuk menyimpan ke Google Drive atau mengirim ke WhatsApp sendiri. Pilih <b>Unduh</b> untuk menyimpan ke folder Download.`;
   const canShare=!!(navigator.canShare&&navigator.canShare({files:[bk.file]}));
   $("#bkAct").innerHTML=(canShare?`<button class="btn primary" id="bkShare">${ICON.share}Bagikan ke Drive / WhatsApp</button>`:"")+`<button class="btn ${canShare?"":"primary"}" id="bkDl">${ICON.save}Unduh file</button>`;
-  if(canShare)$("#bkShare").onclick=async()=>{
-    try{await navigator.share({files:[bk.file],title:"Cadangan Cek Cucian",text:"File cadangan Cek Cucian "+today()});markBackedUp();closeSheet();toast("Cadangan dibagikan")}
-    catch(e){if(e&&e.name!=="AbortError")toast("Gagal membagikan. Coba Unduh file.")}
-  };
-  $("#bkDl").onclick=()=>{
-    const url=URL.createObjectURL(bk.blob);const a=document.createElement("a");a.href=url;a.download=bk.name;document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),4000);markBackedUp();closeSheet();toast("File cadangan diunduh ke folder Download");
-  };
+  const mark=()=>lsSet(LB_KEY,String(Date.now()));
+  if(canShare)$("#bkShare").onclick=async()=>{try{await navigator.share({files:[bk.file],title:"Cadangan Cek Cucian"});mark();closeSheet();toast("Cadangan dibagikan")}catch(e){if(e&&e.name!=="AbortError")toast("Gagal membagikan. Coba Unduh file.")}};
+  $("#bkDl").onclick=()=>{const url=URL.createObjectURL(bk.blob);const a=document.createElement("a");a.href=url;a.download=bk.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);mark();closeSheet();toast("File cadangan diunduh ke folder Download")};
 }
 $("#restoreIn").addEventListener("change",async e=>{
   const f=e.target.files[0];e.target.value="";if(!f)return;
-  let data;
-  try{data=JSON.parse(await f.text())}catch(err){toast("File tidak bisa dibaca. Pilih file .json cadangan Cek Cucian.");return}
+  let data;try{data=JSON.parse(await f.text())}catch(err){toast("File tidak bisa dibaca. Pilih file .json cadangan Cek Cucian.");return}
   if(!data||data.app!=="cek-cucian"||!Array.isArray(data.kiriman)){toast("Ini bukan file cadangan Cek Cucian.");return}
-  const ada=new Map(store.batches.map(b=>[b.id,b]));
-  let baru=0,diperbarui=0,sama=0;
-  for(const b of data.kiriman){const lama=ada.get(b.id);if(!lama)baru++;else if((b.diubah||0)>(lama.diubah||0))diperbarui++;else sama++}
+  const ada=new Map(store.batches.map(b=>[b.id,b]));let baru=0,upd=0,sama=0;
+  for(const b of data.kiriman){const l=ada.get(b.id);if(!l)baru++;else if((b.diubah||0)>(l.diubah||0))upd++;else sama++}
   openSheet(`<div class="sh"><h2>Pulihkan data</h2><button class="btn ghost" data-close>Batal</button></div>
-    <p style="margin:0">File dibuat <b>${esc(data.dibuat?fmtDateTime(Date.parse(data.dibuat)):"–")}</b>, berisi ${data.kiriman.length} kiriman dan ${Object.keys(data.foto||{}).length} foto.</p>
-    <ul class="muted" style="margin:0;padding-left:20px"><li>${baru} kiriman baru akan ditambahkan</li><li>${diperbarui} kiriman akan diganti dengan versi yang lebih baru dari file</li><li>${sama} kiriman sudah ada dan tidak diubah</li></ul>
-    <p class="muted" style="margin:0">Data lain yang sudah ada di HP ini tetap aman.</p>
+    <p style="margin:0">File dibuat <b>${esc(data.dibuat?fmtDT(Date.parse(data.dibuat)):"–")}</b>, berisi ${data.kiriman.length} kiriman dan ${Object.keys(data.foto||{}).length} foto.</p>
+    <ul class="muted" style="margin:0;padding-left:20px"><li>${baru} kiriman baru akan ditambahkan</li><li>${upd} kiriman diganti dengan versi yang lebih baru</li><li>${sama} kiriman sudah ada dan tidak diubah</li></ul>
+    <p class="muted" style="margin:0">Data lain di HP ini tetap aman.</p>
     <button class="btn primary" id="rsGo">${ICON.upload}Pulihkan</button>`,()=>{
       $("#rsGo").onclick=async()=>{
         const btn=$("#rsGo");btn.disabled=true;btn.textContent="Memulihkan…";
         try{
-          for(const [id,u] of Object.entries(data.foto||{})){
-            if(typeof u!=="string"||!u.startsWith("data:image/"))continue;
-            const blob=await (await fetch(u)).blob();
-            await idbDo("readwrite",s=>s.put(blob,id));
-            store.photoCache.delete("i:"+id);
-          }
-          for(const b of data.kiriman){
-            if(!b||typeof b.id!=="string")continue;
-            const lama=ada.get(b.id);
-            if(!lama)store.batches.push(b);
-            else if((b.diubah||0)>(lama.diubah||0))store.batches[store.batches.indexOf(lama)]=b;
-          }
+          for(const [id,u] of Object.entries(data.foto||{})){if(typeof u!=="string"||!u.startsWith("data:image/"))continue;const blob=await (await fetch(u)).blob();await idbDo("readwrite",s=>s.put(blob,id));store.cache.delete(id)}
+          for(const b of data.kiriman){if(!b||typeof b.id!=="string")continue;const l=ada.get(b.id);if(!l)store.batches.push(b);else if((b.diubah||0)>(l.diubah||0))store.batches[store.batches.indexOf(l)]=b}
           store.batches.sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));
-          if(lsWrite()){closeSheet();toast(`Dipulihkan: ${baru} kiriman baru, ${diperbarui} diperbarui`)}
+          if(persist()){closeSheet();toast(`Dipulihkan: ${baru} kiriman baru, ${upd} diperbarui`)}
         }catch(err){toast("Gagal memulihkan: "+(err&&err.message||"coba lagi"));btn.disabled=false;btn.textContent="Pulihkan"}
       };
     });
 });
-let tt;function toast(m){clearTimeout(tt);let el=document.querySelector(".toast");if(!el){el=document.createElement("div");el.className="toast";el.setAttribute("role","status");document.body.appendChild(el)}el.textContent=m;tt=setTimeout(()=>el.remove(),2600)}
 
-render();boot();
+let tt;function toast(m){clearTimeout(tt);let el=$(".toast");if(!el){el=document.createElement("div");el.className="toast";el.setAttribute("role","status");document.body.appendChild(el)}el.textContent=m;tt=setTimeout(()=>el.remove(),2800)}
+
+/* ================= Mulai ================= */
+load();render();
+if(!lsGet(OB_KEY)&&!store.batches.length)setTimeout(openOnboarding,250);
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
 })();
