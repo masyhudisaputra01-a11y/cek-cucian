@@ -365,6 +365,13 @@ select,input[type=time]{font:inherit;font-size:16px;min-height:46px;color:var(--
 
 .head-card > .row .chip.due,.head-card > .row .chip.bad{background:var(--tag);color:var(--tag-ink)}
 .nota .side .chip{white-space:normal;text-align:center;max-width:118px;line-height:1.25}
+
+/* ---- Sidik jari ---- */
+.keypad .biokey{border-color:transparent;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.keypad .biokey svg{width:34px;height:34px}
+.biobig{width:140px;height:140px;border-radius:50%;border:2px solid var(--accent);background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;align-content:center;gap:6px;margin:12px 0 4px;font-weight:600;font-size:.82rem}
+.biobig svg{width:56px;height:56px}
+.biobig:active{transform:scale(.96)}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -407,6 +414,7 @@ const ICON={
   img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>',
   shirt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg>',
   back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  finger:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7.5 4.8A8 8 0 0 1 20 11.5c0 1.6-.2 3.2-.6 4.7"/><path d="M4.5 8.2A8 8 0 0 0 4 11.5v1.2"/><path d="M8 18.5a14 14 0 0 0 1-6.5 3 3 0 0 1 6 0c0 2.6-.4 5-1.2 7.3"/><path d="M12 12c0 3.4-.8 6.4-2.3 9"/><path d="M5.2 16.5c.5-1.3.8-2.8.8-4.5a6 6 0 0 1 9.5-4.9"/><path d="M17.8 9.5c.1.8.2 1.6.2 2.5 0 2.4-.3 4.6-.9 6.7"/></svg>',
   bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
   cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
@@ -542,6 +550,7 @@ function render(){
   const v=$("#view");
   if(!unlocked){v.innerHTML="";return}
   queueSchedule();
+  $("#lockBtn").hidden=store.mode==="cloud"&&!bioOn();
   if(pendingOpen&&store.batches.some(b=>b.id===pendingOpen)){ui.view="batch";ui.id=pendingOpen;ui.tab="cek";pendingOpen=null;try{history.replaceState(null,"",location.pathname)}catch(e){}}
   if(ui.view==="batch"){const b=current();if(b){v.innerHTML=renderBatch(b);bindBatch(b);return}ui.view="list"}
   v.innerHTML=renderList();bindList();
@@ -606,6 +615,8 @@ function bindList(){
   $$('[data-act="install"]').forEach(el=>el.onclick=doInstall);
   $$('[data-act="chpin"]').forEach(el=>el.onclick=()=>lockScreen("verify"));
   $$('[data-act="newrec"]').forEach(el=>el.onclick=newRecoveryFlow);
+  $$('[data-act="bioon"]').forEach(el=>el.onclick=bioEnable);
+  $$('[data-act="biooff"]').forEach(el=>el.onclick=bioDisable);
   $$('[data-act="locknow"]').forEach(el=>el.onclick=()=>lockScreen("unlock"));
   $$('[data-act="notifon"]').forEach(el=>el.onclick=askNotif);
   $$('[data-act="notiftest"]').forEach(el=>el.onclick=()=>showNotif("Tes pengingat Cek Cucian","Notifikasi berfungsi. Pengingat ambil akan muncul seperti ini.","tes"));
@@ -613,8 +624,8 @@ function bindList(){
 }
 function securityHTML(){
   return `<section class="backup sec-card"><div><h3>${ICON.lock}Keamanan</h3>
-    <p class="muted">Aplikasi terkunci PIN setiap dibuka, dan terkunci lagi kalau ditinggal lebih dari 1 menit.</p></div>
-    <div class="actions" style="margin:0"><button class="btn" data-act="chpin">Ganti PIN</button><button class="btn" data-act="newrec">Kode pemulihan baru</button><button class="btn ghost" data-act="locknow">${ICON.lock}Kunci sekarang</button></div></section>`;
+    <p class="muted">Aplikasi terkunci setiap dibuka, dan terkunci lagi kalau ditinggal lebih dari 1 menit. ${bioOn()?"Bisa dibuka dengan sidik jari atau PIN.":bioAvail?"Aktifkan sidik jari supaya tidak perlu mengetik PIN.":""}</p></div>
+    <div class="actions" style="margin:0">${bioButtons()}<button class="btn" data-act="chpin">Ganti PIN</button><button class="btn" data-act="newrec">Kode pemulihan baru</button><button class="btn ghost" data-act="locknow">${ICON.lock}Kunci sekarang</button></div></section>`;
 }
 
 /* ================= Pasang aplikasi ================= */
@@ -1096,26 +1107,38 @@ function drawLock(){
     $("#rsIn").oninput=()=>{$("#rsGo").disabled=$("#rsIn").value.trim().toUpperCase()!=="HAPUS"};
     $("#rsBack").onclick=()=>lockScreen("unlock");
     $("#rsGo").onclick=async()=>{
-      try{[LS_KEY,LB_KEY,PIN_KEY,REC_KEY,FAIL_KEY,WAIT_KEY].forEach(k=>localStorage.removeItem(k))}catch(e){}
+      try{[LS_KEY,LB_KEY,PIN_KEY,REC_KEY,FAIL_KEY,WAIT_KEY,"cekcucian.bio"].forEach(k=>localStorage.removeItem(k))}catch(e){}
       try{const d=await idb();d.close()}catch(e){}
       await new Promise(r=>{try{const q=indexedDB.deleteDatabase("cekcucian");q.onsuccess=q.onerror=q.onblocked=()=>r()}catch(e){r()}});
       location.reload();
     };return;
+  }
+  if(m==="bio"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}<div class="lk-brand">Cek Cucian</div>
+      <h2>Aplikasi terkunci</h2><p class="muted">Buka dengan sidik jari atau kunci layar HP Anda.</p>
+      <button class="biobig" id="lkBio">${ICON.finger}<span>Ketuk untuk membuka</span></button>
+      <p class="lk-msg" id="lkMsg">${esc(lk.msg)}</p>
+      <button class="btn ghost" id="lkPw">Masuk dengan password</button></div></div>`;
+    $("#lkBio").onclick=()=>bioUnlock(true);
+    $("#lkPw").onclick=()=>{store.auth&&store.auth.signOut()};
+    autoBio();return;
   }
   const titles={unlock:["Masukkan PIN","Untuk membuka catatan cucian Anda"],create:[lk.reason==="change"?"Buat PIN baru":lk.reason==="recover"?"Buat PIN baru":"Buat PIN",`${PIN_LEN} angka untuk membuka Cek Cucian di HP ini`],confirm:["Ulangi PIN","Masukkan PIN yang sama sekali lagi"],verify:["PIN saat ini","Masukkan PIN lama untuk menggantinya"]};
   const [t,s]=titles[m];
   const w=m==="unlock"?waitLeft():0;
   lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}
     <div class="lk-brand">Cek Cucian</div>
-    <h2>${esc(t)}</h2><p class="muted">${esc(s)}</p>
+    <h2>${esc(t)}</h2><p class="muted">${esc(m==="unlock"&&bioOn()?"Pakai sidik jari atau masukkan PIN":s)}</p>
     <div class="dots" id="dots">${Array.from({length:PIN_LEN},(_,i)=>`<i class="${i<lk.entry.length?"on":""}"></i>`).join("")}</div>
     <p class="lk-msg" id="lkMsg">${w?`Terlalu banyak percobaan. Coba lagi dalam ${Math.ceil(w/1000)} detik.`:esc(lk.msg)}</p>
     <div class="keypad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-k="${n}" ${w?"disabled":""}>${n}</button>`).join("")}
-      <span></span><button data-k="0" ${w?"disabled":""}>0</button><button data-k="del" aria-label="Hapus angka">⌫</button></div>
+      ${m==="unlock"&&bioOn()?`<button class="biokey" id="lkBio" aria-label="Buka dengan sidik jari">${ICON.finger}</button>`:"<span></span>"}<button data-k="0" ${w?"disabled":""}>0</button><button data-k="del" aria-label="Hapus angka">⌫</button></div>
     <div class="lk-foot">${m==="unlock"?`<button class="btn ghost" id="lkForgot">Lupa PIN?</button>`:""}${m==="verify"||(m==="create"&&lk.reason==="change")?`<button class="btn ghost" id="lkCancel">Batal</button>`:""}${m==="confirm"?`<button class="btn ghost" id="lkRedo">Ulangi dari awal</button>`:""}</div>
   </div></div>`;
   lockEl.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>press(b.dataset.k));
   const f=$("#lkForgot");if(f)f.onclick=()=>lockScreen("recover");
+  const bk=$("#lkBio");if(bk)bk.onclick=()=>bioUnlock(true);
+  if(m==="unlock"&&!w)autoBio();
   const c=$("#lkCancel");if(c)c.onclick=()=>{lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;render()};
   const r=$("#lkRedo");if(r)r.onclick=()=>{lk.mode="create";lk.entry="";lk.first="";lk.msg="";drawLock()};
   clearTimeout(waitTimer);if(w)waitTimer=setTimeout(drawLock,1000);
@@ -1159,6 +1182,7 @@ document.addEventListener("keydown",e=>{
 document.addEventListener("visibilitychange",()=>{
   if(document.hidden)hiddenAt=Date.now();
   else if(store.mode!=="cloud"&&unlocked&&hasPin()&&hiddenAt&&Date.now()-hiddenAt>60000)lockScreen("unlock");
+  else if(store.mode==="cloud"&&unlocked&&bioOn()&&hiddenAt&&Date.now()-hiddenAt>60000)lockScreen("bio");
 });
 function newRecoveryFlow(){const code=newRecovery();putHash(REC_KEY,normCode(code)).then(()=>{lockEl.hidden=false;document.body.classList.add("locked");lk={mode:"showcode",code,then:()=>{lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");toast("Kode pemulihan baru tersimpan")}};drawLock()})}
 
@@ -1252,6 +1276,45 @@ function openCalSheet(b){
 let pendingOpen=new URLSearchParams(location.search).get("kiriman");
 if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.open&&e.data.open!=="tes"){pendingOpen=e.data.open;if(!sheetOpen)render()}});
 
+/* ================= Sidik jari / kunci layar HP (WebAuthn) ================= */
+const BIO_KEY="cekcucian.bio";
+let bioAvail=false;
+const bioId=()=>lsGet(BIO_KEY,"");
+const bioOn=()=>bioAvail&&!!bioId();
+const b64e=buf=>btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const b64d=s=>{s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return Uint8Array.from(atob(s),c=>c.charCodeAt(0))};
+const rnd=n=>crypto.getRandomValues(new Uint8Array(n));
+(async()=>{try{bioAvail=!!(window.PublicKeyCredential&&PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable&&await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable())}catch(e){}
+  if(!lockEl.hidden&&(lk.mode==="unlock"||lk.mode==="bio"))drawLock();else if(unlocked&&!sheetOpen)render()})();
+async function bioEnable(){
+  try{
+    const cred=await navigator.credentials.create({publicKey:{challenge:rnd(32),rp:{name:"Cek Cucian"},user:{id:rnd(16),name:"cek-cucian",displayName:"Pengguna Cek Cucian"},
+      pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],
+      authenticatorSelection:{authenticatorAttachment:"platform",userVerification:"required",residentKey:"discouraged"},timeout:60000,attestation:"none"}});
+    lsSet(BIO_KEY,b64e(cred.rawId));toast("Buka dengan sidik jari sudah aktif");render();
+  }catch(e){toast(e&&e.name==="NotAllowedError"?"Dibatalkan.":"Sidik jari tidak bisa diaktifkan di HP atau browser ini.")}
+}
+function bioDisable(){try{localStorage.removeItem(BIO_KEY)}catch(e){}toast("Sidik jari dimatikan");render()}
+let bioBusy=false;
+async function bioUnlock(fromClick){
+  const id=bioId();if(!id||bioBusy)return;bioBusy=true;
+  try{
+    const cred=await navigator.credentials.get({publicKey:{challenge:rnd(32),allowCredentials:[{type:"public-key",id:b64d(id),transports:["internal"]}],userVerification:"required",timeout:60000}});
+    if(!cred||b64e(cred.rawId)!==id)throw new Error("beda");
+    const ad=new Uint8Array(cred.response.authenticatorData);if(!(ad[32]&4))throw new Error("UV");
+    bioBusy=false;
+    if(lk.mode==="bio"){lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;render()}else finishUnlock();
+  }catch(e){
+    bioBusy=false;
+    if(fromClick||(e&&e.name!=="NotAllowedError")){const m=$("#lkMsg");if(m)m.textContent=lk.mode==="bio"?"Sidik jari dibatalkan atau tidak dikenali. Coba lagi.":"Sidik jari dibatalkan atau tidak dikenali. Coba lagi atau pakai PIN."}
+  }
+}
+function autoBio(){if(bioOn()&&!lk.triedBio&&!document.hidden){lk.triedBio=true;setTimeout(()=>bioUnlock(false),350)}}
+function bioButtons(){
+  if(!bioAvail)return"";
+  return bioOn()?`<button class="btn" data-act="biooff">${ICON.finger}Matikan sidik jari</button>`:`<button class="btn primary" data-act="bioon">${ICON.finger}Aktifkan sidik jari</button>`;
+}
+
 /* ================= Mulai ================= */
 /* ================= Akun Firebase ================= */
 const FB_VER="10.14.1";
@@ -1283,8 +1346,8 @@ async function startCloud(cfg){
 function enterCloud(u){
   if(store.unsub)store.unsub();
   store.uid=u.uid;store.user=u;store.loaded=false;store.batches=[];
-  lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;
-  render();
+  if(bioOn())lockScreen("bio");
+  else{lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;render()}
   let first=true;
   store.unsub=userCol("kiriman").onSnapshot(snap=>{
     store.batches=snap.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));
@@ -1343,8 +1406,8 @@ async function photoDataURL(r){
 }
 function accountHTML(){
   const u=store.user||{};
-  return `<section class="backup sec-card"><div><h3>${ICON.lock}Akun</h3><p class="muted">Masuk sebagai <b>${esc(u.email||u.displayName||"-")}</b>. Catatan dan foto tersimpan di akun ini dan bisa dibuka dari HP lain dengan login yang sama.</p></div>
-    <div class="actions" style="margin:0"><button class="btn" data-act="backup">${ICON.save}Unduh cadangan</button><button class="btn" data-act="restore">${ICON.upload}Impor cadangan</button><button class="btn danger" data-act="logout">Keluar</button></div></section>`;
+  return `<section class="backup sec-card"><div><h3>${ICON.lock}Akun</h3><p class="muted">Masuk sebagai <b>${esc(u.email||u.displayName||"-")}</b>. Catatan dan foto tersimpan di akun ini dan bisa dibuka dari HP lain dengan login yang sama.${bioAvail?(bioOn()?" Aplikasi terkunci sidik jari setiap dibuka.":" Aktifkan sidik jari supaya aplikasi terkunci setiap dibuka."):""}</p></div>
+    <div class="actions" style="margin:0">${bioButtons()}<button class="btn" data-act="backup">${ICON.save}Unduh cadangan</button><button class="btn" data-act="restore">${ICON.upload}Impor cadangan</button><button class="btn danger" data-act="logout">Keluar</button></div></section>`;
 }
 function showAuth(mode,msg,ok){
   lockEl.hidden=false;document.body.classList.add("locked");
@@ -1402,7 +1465,7 @@ function setAuMsg(m){const el=$("#auMsg");if(el){el.className="lk-msg";el.textCo
 function busyBtn(on){const b=$("#auGo");if(!b)return;if(on){b.dataset.t=b.textContent;b.textContent="Memproses…";b.disabled=true}else{b.textContent=b.dataset.t||b.textContent;b.disabled=false}}
 
 load();
-$("#lockBtn").onclick=()=>{if(hasPin())lockScreen("unlock")};
+$("#lockBtn").onclick=()=>{if(store.mode==="cloud"){if(bioOn())lockScreen("bio")}else if(hasPin())lockScreen("unlock")};
 const CFG=window.FIREBASE_CONFIG;
 if(CFG&&CFG.apiKey&&CFG.projectId&&!/ISI_DI_SINI/.test(CFG.apiKey)){store.mode="cloud";$("#lockBtn").hidden=true;startCloud(CFG)}
 else lockScreen(hasPin()?"unlock":"create");
