@@ -310,6 +310,61 @@ input[type=tel]{font:inherit;font-size:16px;min-height:46px;color:var(--ink);bac
 .ob h2{font-size:1.35rem}
 .ob p{margin:0;max-width:40ch}
 .lb-n{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));text-align:center;color:#fff;font-size:.82rem;opacity:.85}
+
+/* ---- Kunci PIN ---- */
+.appbar-act{display:flex;gap:8px}
+body.locked{overflow:hidden}
+#lock{position:fixed;inset:0;z-index:90;background:var(--bg);overflow:auto}
+.lk{min-height:100%;display:flex;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px))}
+.lk-in{width:100%;max-width:340px;display:grid;gap:12px;justify-items:center;text-align:center}
+.lk-in h2{font-size:1.4rem}
+.lk-in p{margin:0}
+.lk-logo{width:60px;height:60px;border-radius:18px}
+.lk-logo svg{width:34px;height:34px}
+.lk-brand{font-family:var(--f-display);font-weight:800;color:var(--accent);letter-spacing:.02em;margin-top:-4px}
+.dots{display:flex;gap:16px;margin:10px 0 2px}
+.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--accent);transition:background .12s}
+.dots i.on{background:var(--accent)}
+.dots.shake{animation:shk .35s}
+@keyframes shk{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+@media (prefers-reduced-motion:reduce){.dots.shake{animation:none}}
+.lk-msg{min-height:1.4em;color:var(--bad);font-size:.88rem;font-weight:500}
+.keypad{display:grid;grid-template-columns:repeat(3,76px);gap:14px 22px;justify-content:center;margin-top:4px}
+.keypad button{width:76px;height:76px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:var(--f-display);font-size:1.7rem;font-weight:600;transition:transform .08s, background .08s}
+.keypad button:active{background:var(--accent-soft);transform:scale(.94)}
+.keypad button:disabled{opacity:.4}
+.keypad button[data-k="del"]{border-color:transparent;background:transparent;font-size:1.4rem}
+@media (max-height:640px){.keypad{grid-template-columns:repeat(3,64px);gap:10px 20px}.keypad button{width:64px;height:64px;font-size:1.45rem}.lk-logo{display:none}}
+.lk-foot{min-height:44px;display:flex;gap:8px;justify-content:center}
+.rcode{font-size:2rem;font-weight:500;letter-spacing:.12em;background:var(--paper);border:2px dashed var(--accent);border-radius:14px;padding:16px 20px;width:100%;user-select:all}
+.rc-in{font:inherit;font-size:1.3rem;text-align:center;letter-spacing:.1em;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-height:52px}
+.danger-t{color:var(--bad)}
+.sec-card h3{display:flex;align-items:center;gap:8px}
+.sec-card h3 svg{width:18px;height:18px;color:var(--accent)}
+.sec-card{margin-top:14px}
+
+/* ---- Login akun ---- */
+.lk-in.auth{max-width:360px;gap:10px}
+.auform{display:grid;gap:10px;width:100%}
+.auform input{font:inherit;font-size:16px;min-height:50px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%}
+.pw{position:relative}
+.pw input{padding-right:110px}
+.pwt{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--accent);font-weight:600;padding:8px 10px;min-height:40px}
+.gbtn{width:100%;min-height:52px;background:var(--paper);border:1px solid var(--line);color:var(--ink);font-size:1rem}
+.g-dot{width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:.9rem}
+.or{display:flex;align-items:center;gap:10px;width:100%;color:var(--muted);font-size:.8rem}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.lk-msg.ok{color:var(--ok)}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:600;padding:6px 2px;cursor:pointer}
+
+/* ---- Pengingat ---- */
+select,input[type=time]{font:inherit;font-size:16px;min-height:46px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;min-width:0}
+.ok-t{color:var(--ok)}
+.bad-t{color:var(--wait)}
+.sheet a.btn{text-decoration:none}
+
+.head-card > .row .chip.due,.head-card > .row .chip.bad{background:var(--tag);color:var(--tag-ink)}
+.nota .side .chip{white-space:normal;text-align:center;max-width:118px;line-height:1.25}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -317,13 +372,15 @@ input[type=tel]{font:inherit;font-size:16px;min-height:46px;color:var(--ink);bac
 <header class="appbar"><div class="appbar-in">
   <div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg></span>
     <div style="min-width:0"><div class="brand-t">Cek Cucian</div><div class="brand-s">Catatan pribadi cucian Anda</div></div></div>
-  <button class="iconbtn" id="helpBtn" aria-label="Cara pakai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></button>
+  <div class="appbar-act"><button class="iconbtn" id="lockBtn" aria-label="Kunci aplikasi" title="Kunci sekarang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></button>
+  <button class="iconbtn" id="helpBtn" aria-label="Cara pakai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.4"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg></button></div>
 </div></header>
 <div class="wrap" id="app"><div id="view"></div></div>
 <input type="file" id="fileIn" accept="image/*" capture="environment" hidden>
 <input type="file" id="fileInGallery" accept="image/*" multiple hidden>
 <input type="file" id="restoreIn" accept=".json,application/json" hidden>
 <datalist id="laundryList"></datalist>
+<script src="firebase-config.js"></script>
 <div id="overlay"></div>
 
 <script>
@@ -350,6 +407,8 @@ const ICON={
   img:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>',
   shirt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg>',
   back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>',
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
   check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
   save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14"/></svg>',
@@ -367,44 +426,51 @@ const ICON={
 
 /* ================= Penyimpanan ================= */
 let idbP=null;
-function idb(){if(!idbP)idbP=new Promise((res,rej)=>{const r=indexedDB.open("cekcucian",1);r.onupgradeneeded=()=>r.result.createObjectStore("foto");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});return idbP}
-async function idbDo(mode,fn){const d=await idb();return new Promise((res,rej)=>{const t=d.transaction("foto",mode);const s=t.objectStore("foto");const q=fn(s);t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)})}
-const store={batches:[],cache:new Map()};
+function idb(){if(!idbP)idbP=new Promise((res,rej)=>{const r=indexedDB.open("cekcucian",2);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains("foto"))d.createObjectStore("foto");if(!d.objectStoreNames.contains("meta"))d.createObjectStore("meta")};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});return idbP}
+async function idbDo(mode,fn,st="foto"){const d=await idb();return new Promise((res,rej)=>{const t=d.transaction(st,mode);const s=t.objectStore(st);const q=fn(s);t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)})}
+const store={batches:[],cache:new Map(),mode:"local"};
 function load(){try{store.batches=JSON.parse(lsGet(LS_KEY,"[]"))||[]}catch(e){store.batches=[]}}
 function persist(){if(!lsSet(LS_KEY,JSON.stringify(store.batches))){toast("Memori browser penuh. Hapus kiriman lama atau cadangkan lalu bersihkan.");return false}return true}
-function saveBatch(b){b.diubah=Date.now();const i=store.batches.findIndex(x=>x.id===b.id);if(i<0)store.batches.unshift(b);else store.batches[i]=b;persist();render()}
+function saveBatch(b){b.diubah=Date.now();const i=store.batches.findIndex(x=>x.id===b.id);if(i<0)store.batches.unshift(b);else store.batches[i]=b;if(store.mode==="cloud")cloudWrite(b);else persist();render()}
 function allRefs(b){const r=[...(b.fotoUmum||[])];for(const it of b.items||[]){r.push(...(it.foto||[]),...(it.cekFoto||[]))}return r}
-async function deleteBatch(b){store.batches=store.batches.filter(x=>x.id!==b.id);persist();for(const r of allRefs(b))await deletePhoto(r)}
-async function deletePhoto(r){try{if(r&&r.i)await idbDo("readwrite",s=>s.delete(r.i))}catch(e){}}
+async function deleteBatch(b){store.batches=store.batches.filter(x=>x.id!==b.id);if(store.mode==="cloud")userCol("kiriman").doc(b.id).delete().catch(e=>toast("Gagal menghapus: "+fbErr(e)));else persist();for(const r of allRefs(b))await deletePhoto(r)}
+async function deletePhoto(r){try{if(!r)return;if(r.i)await idbDo("readwrite",s=>s.delete(r.i));if(r.f&&store.uid)userCol("foto").doc(r.f).delete().catch(()=>{})}catch(e){}}
 
 /* Foto: dikecilkan + cap waktu */
-async function compress(file){
+async function compress(file,max=1400,q=.8,stamp=true){
   const url=URL.createObjectURL(file);
   try{
     const img=await new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error("File bukan gambar"));i.src=url});
-    const max=1400,s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
+    const s=Math.min(1,max/Math.max(img.naturalWidth,img.naturalHeight));
     const c=document.createElement("canvas");c.width=Math.round(img.naturalWidth*s);c.height=Math.round(img.naturalHeight*s);
     const g=c.getContext("2d");g.drawImage(img,0,0,c.width,c.height);
-    const fs=Math.max(14,Math.round(c.width/30)),pad=Math.round(fs*.6);
-    const stamp=fmtDT(Date.now())+" · Cek Cucian";
+    if(stamp){const fs=Math.max(14,Math.round(c.width/30)),pad=Math.round(fs*.6);
+    const label=fmtDT(Date.now())+" · Cek Cucian";
     g.font=`600 ${fs}px system-ui, -apple-system, Segoe UI, sans-serif`;
-    const tw=g.measureText(stamp).width;
+    const tw=g.measureText(label).width;
     g.fillStyle="rgba(0,0,0,.55)";g.fillRect(c.width-tw-pad*3,c.height-fs-pad*3,tw+pad*2,fs+pad*2);
-    g.fillStyle="#fff";g.textBaseline="top";g.fillText(stamp,c.width-tw-pad*2,c.height-fs-pad*2);
-    return await new Promise(res=>c.toBlob(b=>res(b),"image/jpeg",.8));
+    g.fillStyle="#fff";g.textBaseline="top";g.fillText(label,c.width-tw-pad*2,c.height-fs-pad*2);}
+    return await new Promise(res=>c.toBlob(b=>res(b),"image/jpeg",q));
   }finally{URL.revokeObjectURL(url)}
 }
 async function savePhoto(file){
+  if(store.mode==="cloud"){
+    let u=await blobToDataURL(await compress(file,1200,.72));
+    if(u.length>950000)u=await blobToDataURL(await compress(file,900,.6));
+    const id=uid();userCol("foto").doc(id).set({d:u,t:Date.now()}).catch(e=>toast("Foto gagal diunggah: "+fbErr(e)));
+    store.cache.set(id,u);return {f:id};
+  }
   const blob=await compress(file);const id=uid();
   await idbDo("readwrite",s=>s.put(blob,id));
   store.cache.set(id,URL.createObjectURL(blob));
   return {i:id};
 }
 function photoSrc(r){
-  if(!r||!r.i)return null;
-  if(store.cache.has(r.i))return store.cache.get(r.i);
-  store.cache.set(r.i,null);
-  idbDo("readonly",s=>s.get(r.i)).then(b=>{if(b){store.cache.set(r.i,URL.createObjectURL(b));refreshImages()}}).catch(()=>{});
+  if(!r)return null;const k=r.i||r.f;if(!k)return null;
+  if(store.cache.has(k))return store.cache.get(k);
+  store.cache.set(k,null);
+  if(r.f){if(store.uid)userCol("foto").doc(r.f).get().then(s=>{if(s.exists){store.cache.set(k,s.data().d);refreshImages()}}).catch(()=>{})}
+  else idbDo("readonly",s=>s.get(r.i)).then(b=>{if(b){store.cache.set(k,URL.createObjectURL(b));refreshImages()}}).catch(()=>{});
   return null;
 }
 let refreshT;function refreshImages(){clearTimeout(refreshT);refreshT=setTimeout(()=>{if(sheetRedraw)sheetRedraw();if(!sheetOpen)render()},60)}
@@ -419,19 +485,20 @@ function counts(b){
 }
 const selesaiCek=b=>{const c=counts(b);return c.n>0&&c.done===c.n};
 function dueInfo(b){
-  if(!b.tglAmbil||selesaiCek(b)||!b.dikunci)return null;
+  if(!b.tglAmbil||selesaiCek(b))return null;
   const d=Math.round((new Date(b.tglAmbil+"T00:00:00")-new Date(today()+"T00:00:00"))/864e5);
+  const jam=b.jamAmbil?" "+fmtJam(b.jamAmbil):"";
   if(d<0)return {cls:"bad",txt:`Terlambat ${-d} hari`,rank:0};
-  if(d===0)return {cls:"due",txt:"Ambil hari ini",rank:1};
-  if(d===1)return {cls:"wait",txt:"Ambil besok",rank:2};
+  if(d===0){if(b.jamAmbil&&Date.now()>=ambilAt(b))return {cls:"due",txt:"Sudah waktunya diambil",rank:.5};return {cls:"due",txt:"Ambil hari ini"+jam,rank:1}}
+  if(d===1)return {cls:"wait",txt:"Ambil besok"+jam,rank:2};
   return {cls:"wait",txt:`Ambil ${d} hari lagi`,rank:3};
 }
 function statusChip(b){
   const c=counts(b);
   if(selesaiCek(b))return c.bad?`<span class="chip bad">${c.bad} bermasalah</span>`:`<span class="chip ok">Lengkap</span>`;
   if(c.done)return`<span class="chip wait">Dicek ${c.done}/${c.n}</span>`;
-  if(!b.dikunci)return`<span class="chip draft">Belum diantar</span>`;
   const d=dueInfo(b);
+  if(!b.dikunci)return d&&d.rank<=1?`<span class="chip ${d.cls}">${d.txt}</span>`:`<span class="chip draft">Belum diantar</span>`;
   return d?`<span class="chip ${d.cls}">${d.txt}</span>`:`<span class="chip wait">Di laundry</span>`;
 }
 function waNumber(s){let d=String(s||"").replace(/\D/g,"");if(!d)return"";if(d.startsWith("0"))d="62"+d.slice(1);else if(d.startsWith("8"))d="62"+d;return d}
@@ -473,6 +540,9 @@ function masalahText(b){
 /* ================= Tampilan daftar ================= */
 function render(){
   const v=$("#view");
+  if(!unlocked){v.innerHTML="";return}
+  queueSchedule();
+  if(pendingOpen&&store.batches.some(b=>b.id===pendingOpen)){ui.view="batch";ui.id=pendingOpen;ui.tab="cek";pendingOpen=null;try{history.replaceState(null,"",location.pathname)}catch(e){}}
   if(ui.view==="batch"){const b=current();if(b){v.innerHTML=renderBatch(b);bindBatch(b);return}ui.view="list"}
   v.innerHTML=renderList();bindList();
 }
@@ -489,6 +559,7 @@ function cardHTML(b){
 }
 function renderList(){
   let h="";
+  if(store.mode==="cloud"&&!store.loaded)return `<div class="empty"><p class="muted" style="margin:0">Memuat catatan dari akun…</p></div>`;
   if(!store.batches.length){
     h+=`<div class="hero-empty">
       <div class="steps3">
@@ -499,9 +570,9 @@ function renderList(){
       <h2>Cucian Anda, tercatat lengkap</h2>
       <p class="lead">Catat dan foto baju sebelum dibawa ke laundry mana saja. Saat mengambil, cocokkan dengan catatan supaya tidak ada yang hilang atau tertukar.</p>
       <button class="btn primary big" data-act="new">${ICON.plus}Catat cucian pertama</button>
-      <button class="btn ghost" data-act="restore">${ICON.upload}Pindahan dari HP lain? Pulihkan cadangan</button>
+      <button class="btn ghost" data-act="restore">${ICON.upload}${store.mode==="cloud"?"Punya file cadangan? Impor ke akun":"Pindahan dari HP lain? Pulihkan cadangan"}</button>
     </div>`;
-    h+=installCard();
+    h+=installCard()+(store.mode==="cloud"?accountHTML():securityHTML());
     return h;
   }
   const kunci=store.batches.filter(b=>b.dikunci&&!selesaiCek(b)).sort((a,b)=>{const x=dueInfo(a),y=dueInfo(b);return (x?x.rank:4)-(y?y.rank:4)||(a.tglAmbil||"9").localeCompare(b.tglAmbil||"9")});
@@ -513,15 +584,17 @@ function renderList(){
   h+=`<div class="pagehead"><h1>Cucian saya</h1><p class="muted">${store.batches.length} kiriman tercatat</p></div>
     <div class="stats"><div><b>${kunci.length}</b><span>Di laundry</span></div><div><b>${pcsBelum}</b><span>Pcs belum kembali</span></div><div class="${masalah?"warn":""}"><b>${masalah}</b><span>Bermasalah</span></div></div>`;
   if(due.length)h+=`<div class="alert">${ICON.clock}<div><b>${due.length===1?esc(due[0].laundry)+": "+dueInfo(due[0]).txt.toLowerCase():due.length+" kiriman perlu diambil"}</b><span>Jangan lupa cek cucian saat mengambil.</span></div></div>`;
-  if(lsGet(LS_KEY)&&backupDue()&&store.batches.length>=1)h+=`<div class="note backup-due"><div><b>${lastBackup()?"Sudah "+daysSince(lastBackup())+" hari belum dicadangkan.":"Catatan belum pernah dicadangkan."}</b> Data hanya ada di HP ini. Simpan cadangan supaya aman kalau HP rusak atau ganti HP.</div><button class="btn" data-act="backup">${ICON.save}Cadangkan sekarang</button></div>`;
+  if(store.mode!=="cloud"&&backupDue()&&store.batches.length>=1)h+=`<div class="note backup-due"><div><b>${lastBackup()?"Sudah "+daysSince(lastBackup())+" hari belum dicadangkan.":"Catatan belum pernah dicadangkan."}</b> Data hanya ada di HP ini. Simpan cadangan supaya aman kalau HP rusak atau ganti HP.</div><button class="btn" data-act="backup">${ICON.save}Cadangkan sekarang</button></div>`;
   if(draft.length)h+=`<div class="label sec">Belum diantar · ${draft.length}</div><div class="list">${draft.map(cardHTML).join("")}</div>`;
   if(kunci.length)h+=`<div class="label sec">Di laundry · ${kunci.length}</div><div class="list">${kunci.map(cardHTML).join("")}</div>`;
   if(done.length)h+=`<div class="label sec">Sudah diambil & dicek · ${done.length}</div><div class="list">${done.map(cardHTML).join("")}</div>`;
-  h+=installCard();
+  h+=installCard()+reminderHTML();
   const lb=lastBackup();
-  h+=`<section class="backup"><div><h3>Cadangan data</h3>
+  if(store.mode==="cloud")h+=accountHTML();
+  else{h+=`<section class="backup"><div><h3>Cadangan data</h3>
     <p class="muted">${lb?`Terakhir dicadangkan ${esc(fmtDT(lb))}.`:"Belum pernah dicadangkan."} Catatan dan foto tersimpan di HP ini saja. File cadangan bisa disimpan di Google Drive atau WhatsApp, lalu dipulihkan di HP lain.</p></div>
     <div class="actions" style="margin:0"><button class="btn primary" data-act="backup">${ICON.save}Cadangkan</button><button class="btn" data-act="restore">${ICON.upload}Pulihkan dari file</button></div></section>`;
+  h+=securityHTML();}
   h+=`<div class="bottombar"><div class="bb-in"><button class="btn primary" data-act="new">${ICON.plus}Catat cucian baru</button></div></div>`;
   return h;
 }
@@ -531,6 +604,17 @@ function bindList(){
   $$('[data-act="backup"]').forEach(el=>el.onclick=openBackupSheet);
   $$('[data-act="restore"]').forEach(el=>el.onclick=()=>$("#restoreIn").click());
   $$('[data-act="install"]').forEach(el=>el.onclick=doInstall);
+  $$('[data-act="chpin"]').forEach(el=>el.onclick=()=>lockScreen("verify"));
+  $$('[data-act="newrec"]').forEach(el=>el.onclick=newRecoveryFlow);
+  $$('[data-act="locknow"]').forEach(el=>el.onclick=()=>lockScreen("unlock"));
+  $$('[data-act="notifon"]').forEach(el=>el.onclick=askNotif);
+  $$('[data-act="notiftest"]').forEach(el=>el.onclick=()=>showNotif("Tes pengingat Cek Cucian","Notifikasi berfungsi. Pengingat ambil akan muncul seperti ini.","tes"));
+  $$('[data-act="logout"]').forEach(el=>el.onclick=()=>{store.auth&&store.auth.signOut().then(()=>toast("Anda sudah keluar"))});
+}
+function securityHTML(){
+  return `<section class="backup sec-card"><div><h3>${ICON.lock}Keamanan</h3>
+    <p class="muted">Aplikasi terkunci PIN setiap dibuka, dan terkunci lagi kalau ditinggal lebih dari 1 menit.</p></div>
+    <div class="actions" style="margin:0"><button class="btn" data-act="chpin">Ganti PIN</button><button class="btn" data-act="newrec">Kode pemulihan baru</button><button class="btn ghost" data-act="locknow">${ICON.lock}Kunci sekarang</button></div></section>`;
 }
 
 /* ================= Pasang aplikasi ================= */
@@ -563,11 +647,11 @@ function renderBatch(b){
     <div class="facts">
       <div><div class="label">No. nota</div><div class="v mono">${b.nota?"#"+esc(b.nota):"–"}</div></div>
       <div><div class="label">${locked?"Diantar":"Tgl antar"}</div><div class="v">${esc(locked?fmtDT(b.dikunci):fmtDate(b.tglAntar))}</div></div>
-      <div><div class="label">Janji ambil</div><div class="v">${esc(fmtDate(b.tglAmbil))}</div></div>
+      <div><div class="label">Janji ambil</div><div class="v">${esc(fmtDate(b.tglAmbil))}${b.jamAmbil?`, ${esc(fmtJam(b.jamAmbil))}`:""}</div></div>
       <div><div class="label">Berat / harga</div><div class="v"><span class="mono">${b.berat?esc(b.berat)+" kg":"–"}</span> · ${esc(rupiah(b.harga))}</div></div>
     </div>
     ${b.catatan?`<p class="muted" style="margin:0;overflow-wrap:anywhere">${esc(b.catatan)}</p>`:""}
-    <div class="headact"><button class="btn" data-act="editb">Ubah info</button>${b.wa?`<span class="muted small">WA laundry: <span class="mono">${esc(b.wa)}</span></span>`:""}</div>
+    <div class="headact"><button class="btn" data-act="editb">Ubah info</button>${b.tglAmbil&&!selesaiCek(b)?`<button class="btn" data-act="cal">${ICON.cal}Ke kalender</button>`:""}${b.wa?`<span class="muted small">WA laundry: <span class="mono">${esc(b.wa)}</span></span>`:""}</div>
   </section>`;
   if(locked)h+=`<div class="lockbar">${ICON.lock}<div><b>Catatan dikunci sejak ${esc(fmtDT(b.dikunci))}</b><span>Daftar barang tidak bisa diubah, jadi bisa dipakai sebagai bukti.</span></div></div>`;
   h+=`<div class="tabs" role="tablist">
@@ -637,6 +721,7 @@ function bindBatch(b){
   on('[data-act="back"]',()=>go("list"));
   on("[data-tab]",el=>{ui.tab=el.dataset.tab;render();const t=$(".tabs");if(t&&t.getBoundingClientRect().top<0)t.scrollIntoView()});
   on('[data-act="editb"]',()=>openBatchSheet(b));
+  on('[data-act="cal"]',()=>openCalSheet(b));
   on('[data-act="additem"]',()=>openItemSheet(b,null));
   on('[data-act="quick"]',()=>openQuickSheet(b));
   on("[data-edit]",el=>openItemSheet(b,item(el.dataset.edit)));
@@ -718,6 +803,11 @@ function openBatchSheet(b){
       <div class="field"><label for="fAmbil">Janji ambil</label><input type="date" id="fAmbil" value="${esc(d.tglAmbil)}"></div>
     </div>
     <div class="grid2">
+      <div class="field"><label for="fJam">Jam ambil</label><input type="time" id="fJam" value="${esc(d.jamAmbil||"")}"></div>
+      <div class="field"><label for="fIngat">Ingatkan saya</label><select id="fIngat">${INGAT_OPS.map(([v,l])=>`<option value="${v}" ${String(d.ingat??0)===String(v)?"selected":""}>${l}</option>`).join("")}</select></div>
+    </div>
+    <small class="muted" style="margin-top:-8px">Notifikasi muncul sesuai jam ini. Tanpa jam, pengingat muncul jam 08.00 di hari ambil.</small>
+    <div class="grid2">
       <div class="field"><label for="fNota">No. nota (opsional)</label><input type="text" id="fNota" value="${esc(d.nota)}" placeholder="mis. 0412"></div>
       <div class="field"><label for="fBerat">Berat kg (opsional)</label><input type="number" step="0.1" min="0" inputmode="decimal" id="fBerat" value="${esc(d.berat)}"></div>
     </div>
@@ -728,8 +818,9 @@ function openBatchSheet(b){
       $("#fSave").onclick=()=>{
         const nb=b||{id:uid(),items:[],fotoUmum:[],dibuat:Date.now()};
         nb.laundry=$("#fLaundry").value.trim()||"Laundry";nb.wa=$("#fWa").value.trim();
-        nb.tglAntar=$("#fAntar").value||today();nb.tglAmbil=$("#fAmbil").value;
+        nb.tglAntar=$("#fAntar").value||today();nb.tglAmbil=$("#fAmbil").value;nb.jamAmbil=$("#fJam").value;nb.ingat=Number($("#fIngat").value);
         nb.nota=$("#fNota").value.trim();nb.berat=$("#fBerat").value;nb.harga=$("#fHarga").value;nb.catatan=$("#fCat").value.trim();
+        if(nb.tglAmbil&&nb.ingat>=0&&"Notification" in window&&Notification.permission==="default")askNotif();
         hideSheet();ui.view="batch";ui.id=nb.id;if(isNew)ui.tab="catatan";
         saveBatch(nb);window.scrollTo(0,0);
         if(isNew)setTimeout(()=>openStartChoice(nb),60);
@@ -870,7 +961,7 @@ function openOnboarding(){
       <div class="ob-dots">${SLIDES.map((_,k)=>`<i class="${k===i?"on":""}"></i>`).join("")}</div>
       <div class="label">Langkah ${i+1} dari ${SLIDES.length}</div>
       <h2>${esc(s.t)}</h2><p>${esc(s.p)}</p>
-      ${last?`<p class="muted small">Semua catatan dan foto tersimpan di HP Anda sendiri, tidak dikirim ke mana pun. Tidak perlu daftar atau login.</p>`:""}
+      ${last?`<p class="muted small">${store.mode==="cloud"?"Catatan dan foto tersimpan di akun Anda, jadi tetap aman walau ganti HP.":"Semua catatan dan foto tersimpan di HP Anda sendiri, tidak dikirim ke mana pun."}</p>`:""}
     </div>
     <div class="actions" style="margin:0">${i?`<button class="btn" id="obBack">Kembali</button>`:`<button class="btn ghost" id="obSkip">Lewati</button>`}<button class="btn primary" id="obNext">${last?"Mulai":"Lanjut"}</button></div>`,()=>{
       const end=()=>{lsSet(OB_KEY,"1");closeSheet()};
@@ -891,7 +982,7 @@ const sizeTxt=b=>b>1048576?(b/1048576).toFixed(1).replace(".",",")+" MB":Math.ma
 async function buildBackup(){
   const foto={};let n=0;
   for(const b of store.batches)for(const r of allRefs(b)){
-    if(r.i&&!foto[r.i]){const blob=await idbDo("readonly",s=>s.get(r.i));if(blob){foto[r.i]=await blobToDataURL(blob);n++}}
+    const k=r&&(r.i||r.f);if(k&&!foto[k]){const u=await photoDataURL(r);if(u){foto[k]=u;n++}}
   }
   const blob=new Blob([JSON.stringify({app:"cek-cucian",versi:2,dibuat:new Date().toISOString(),kiriman:store.batches,foto})],{type:"application/json"});
   const name="cek-cucian-cadangan-"+today()+".json";
@@ -922,10 +1013,15 @@ $("#restoreIn").addEventListener("change",async e=>{
       $("#rsGo").onclick=async()=>{
         const btn=$("#rsGo");btn.disabled=true;btn.textContent="Memulihkan…";
         try{
-          for(const [id,u] of Object.entries(data.foto||{})){if(typeof u!=="string"||!u.startsWith("data:image/"))continue;const blob=await (await fetch(u)).blob();await idbDo("readwrite",s=>s.put(blob,id));store.cache.delete(id)}
-          for(const b of data.kiriman){if(!b||typeof b.id!=="string")continue;const l=ada.get(b.id);if(!l)store.batches.push(b);else if((b.diubah||0)>(l.diubah||0))store.batches[store.batches.indexOf(l)]=b}
-          store.batches.sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));
-          if(persist()){closeSheet();toast(`Dipulihkan: ${baru} kiriman baru, ${upd} diperbarui`)}
+          const isNewer=b=>{const l=ada.get(b&&b.id);return b&&typeof b.id==="string"&&(!l||(b.diubah||0)>(l.diubah||0))};
+          const need=new Set();data.kiriman.filter(isNewer).forEach(b=>allRefs(b).forEach(r=>r&&need.add(r.i||r.f)));
+          const map=new Map();
+          for(const [id,u] of Object.entries(data.foto||{})){if(!need.has(id)||typeof u!=="string"||!u.startsWith("data:image/"))continue;btn.textContent=`Memulihkan foto ${map.size+1}…`;map.set(id,await importPhoto(u,id))}
+          for(const b of data.kiriman.filter(isNewer)){remapRefs(b,map);const l=ada.get(b.id);
+            if(store.mode==="cloud")cloudWrite(b);else if(!l)store.batches.push(b);else store.batches[store.batches.indexOf(l)]=b}
+          const done=()=>{closeSheet();toast(`Dipulihkan: ${baru} kiriman baru, ${upd} diperbarui`)};
+          if(store.mode==="cloud")done();
+          else{store.batches.sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));if(persist())done()}
         }catch(err){toast("Gagal memulihkan: "+(err&&err.message||"coba lagi"));btn.disabled=false;btn.textContent="Pulihkan"}
       };
     });
@@ -933,11 +1029,385 @@ $("#restoreIn").addEventListener("change",async e=>{
 
 let tt;function toast(m){clearTimeout(tt);let el=$(".toast");if(!el){el=document.createElement("div");el.className="toast";el.setAttribute("role","status");document.body.appendChild(el)}el.textContent=m;tt=setTimeout(()=>el.remove(),2800)}
 
+/* ================= Kunci PIN ================= */
+const PIN_KEY="cekcucian.pin",REC_KEY="cekcucian.rec",FAIL_KEY="cekcucian.fail",WAIT_KEY="cekcucian.wait";
+const PIN_LEN=4;
+let unlocked=false,hiddenAt=0;
+async function sha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function randHex(n){const a=new Uint8Array(n);crypto.getRandomValues(a);return [...a].map(x=>x.toString(16).padStart(2,"0")).join("")}
+const normCode=c=>String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"");
+function getRec(k){try{return JSON.parse(lsGet(k,"null"))}catch(e){return null}}
+async function putHash(k,v){const salt=randHex(16);return lsSet(k,JSON.stringify({salt,hash:await sha(salt+v)}))}
+async function checkHash(k,v){const p=getRec(k);return !!p&&await sha(p.salt+v)===p.hash}
+function newRecovery(){const al="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";const a=new Uint8Array(8);crypto.getRandomValues(a);const s=[...a].map(x=>al[x%al.length]).join("");return s.slice(0,4)+"-"+s.slice(4)}
+const hasPin=()=>!!getRec(PIN_KEY);
+
+const lockEl=document.createElement("div");lockEl.id="lock";document.body.appendChild(lockEl);
+let lk={mode:"unlock",entry:"",first:"",msg:"",then:null};
+function lockScreen(mode,opts){
+  lk=Object.assign({mode,entry:"",first:"",msg:"",then:null},opts||{});
+  unlocked=mode==="showcode"?unlocked:false;
+  if(!unlocked){$("#overlay").innerHTML="";sheetOpen=false;sheetRedraw=null;$("#view").innerHTML=""}
+  lockEl.hidden=false;document.body.classList.add("locked");drawLock();
+}
+function finishUnlock(){lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;lsSet(FAIL_KEY,"0");render();
+  if(!lsGet(OB_KEY)&&!store.batches.length)setTimeout(openOnboarding,200)}
+const LOGO='<span class="logo lk-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/></svg></span>';
+function waitLeft(){return Math.max(0,(Number(lsGet(WAIT_KEY,0))||0)-Date.now())}
+let waitTimer=null;
+function drawLock(){
+  const m=lk.mode;
+  if(m==="showcode"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}
+      <h2>Simpan kode pemulihan</h2>
+      <p class="muted">Kode ini dipakai kalau Anda lupa PIN. Tulis atau foto, lalu simpan di tempat aman. Kode ini hanya ditampilkan sekali.</p>
+      <div class="rcode mono" id="rcode">${esc(lk.code)}</div>
+      <button class="btn" id="rcCopy">${ICON.copy}Salin kode</button>
+      <button class="btn primary big" id="rcOk">Saya sudah menyimpan kode</button>
+    </div></div>`;
+    $("#rcCopy").onclick=async()=>{try{await navigator.clipboard.writeText(lk.code);toast("Kode disalin")}catch(e){const r=document.createRange();r.selectNodeContents($("#rcode"));const s=getSelection();s.removeAllRanges();s.addRange(r)}};
+    $("#rcOk").onclick=()=>{if(lk.then)lk.then();else finishUnlock()};
+    return;
+  }
+  if(m==="recover"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}
+      <h2>Lupa PIN</h2><p class="muted">Masukkan kode pemulihan 8 huruf/angka yang Anda simpan saat membuat PIN.</p>
+      <input type="text" id="rcIn" class="rc-in mono" autocomplete="off" autocapitalize="characters" placeholder="XXXX-XXXX" maxlength="9">
+      <p class="lk-msg" id="rcMsg">${esc(lk.msg)}</p>
+      <button class="btn primary big" id="rcGo">Pulihkan & buat PIN baru</button>
+      <button class="btn ghost" id="rcBack">Kembali ke PIN</button>
+      <button class="btn ghost danger-t" id="rcLost">Kode pemulihan juga hilang?</button>
+    </div></div>`;
+    const go=async()=>{const v=normCode($("#rcIn").value);if(v.length!==8){lk.msg="Kode terdiri dari 8 huruf/angka.";drawLock();return}
+      if(await checkHash(REC_KEY,v))lockScreen("create",{reason:"recover"});else{lk.msg="Kode tidak cocok. Periksa lagi huruf dan angkanya.";drawLock()}};
+    $("#rcGo").onclick=go;$("#rcIn").onkeydown=e=>{if(e.key==="Enter")go()};
+    $("#rcBack").onclick=()=>lockScreen("unlock");$("#rcLost").onclick=()=>lockScreen("reset");
+    setTimeout(()=>{const i=$("#rcIn");i&&i.focus()},50);return;
+  }
+  if(m==="reset"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}
+      <h2>Mulai dari awal</h2>
+      <p class="muted">Tanpa PIN dan kode pemulihan, satu-satunya cara adalah menghapus semua catatan dan foto di HP ini, lalu membuat PIN baru. Kalau Anda punya file cadangan, data bisa dipulihkan setelahnya.</p>
+      <label class="small" for="rsIn">Ketik <b>HAPUS</b> untuk melanjutkan</label>
+      <input type="text" id="rsIn" class="rc-in" autocomplete="off" autocapitalize="characters">
+      <button class="btn danger big" id="rsGo" disabled>Hapus semua data</button>
+      <button class="btn ghost" id="rsBack">Batal</button>
+    </div></div>`;
+    $("#rsIn").oninput=()=>{$("#rsGo").disabled=$("#rsIn").value.trim().toUpperCase()!=="HAPUS"};
+    $("#rsBack").onclick=()=>lockScreen("unlock");
+    $("#rsGo").onclick=async()=>{
+      try{[LS_KEY,LB_KEY,PIN_KEY,REC_KEY,FAIL_KEY,WAIT_KEY].forEach(k=>localStorage.removeItem(k))}catch(e){}
+      try{const d=await idb();d.close()}catch(e){}
+      await new Promise(r=>{try{const q=indexedDB.deleteDatabase("cekcucian");q.onsuccess=q.onerror=q.onblocked=()=>r()}catch(e){r()}});
+      location.reload();
+    };return;
+  }
+  const titles={unlock:["Masukkan PIN","Untuk membuka catatan cucian Anda"],create:[lk.reason==="change"?"Buat PIN baru":lk.reason==="recover"?"Buat PIN baru":"Buat PIN",`${PIN_LEN} angka untuk membuka Cek Cucian di HP ini`],confirm:["Ulangi PIN","Masukkan PIN yang sama sekali lagi"],verify:["PIN saat ini","Masukkan PIN lama untuk menggantinya"]};
+  const [t,s]=titles[m];
+  const w=m==="unlock"?waitLeft():0;
+  lockEl.innerHTML=`<div class="lk"><div class="lk-in">${LOGO}
+    <div class="lk-brand">Cek Cucian</div>
+    <h2>${esc(t)}</h2><p class="muted">${esc(s)}</p>
+    <div class="dots" id="dots">${Array.from({length:PIN_LEN},(_,i)=>`<i class="${i<lk.entry.length?"on":""}"></i>`).join("")}</div>
+    <p class="lk-msg" id="lkMsg">${w?`Terlalu banyak percobaan. Coba lagi dalam ${Math.ceil(w/1000)} detik.`:esc(lk.msg)}</p>
+    <div class="keypad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-k="${n}" ${w?"disabled":""}>${n}</button>`).join("")}
+      <span></span><button data-k="0" ${w?"disabled":""}>0</button><button data-k="del" aria-label="Hapus angka">⌫</button></div>
+    <div class="lk-foot">${m==="unlock"?`<button class="btn ghost" id="lkForgot">Lupa PIN?</button>`:""}${m==="verify"||(m==="create"&&lk.reason==="change")?`<button class="btn ghost" id="lkCancel">Batal</button>`:""}${m==="confirm"?`<button class="btn ghost" id="lkRedo">Ulangi dari awal</button>`:""}</div>
+  </div></div>`;
+  lockEl.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>press(b.dataset.k));
+  const f=$("#lkForgot");if(f)f.onclick=()=>lockScreen("recover");
+  const c=$("#lkCancel");if(c)c.onclick=()=>{lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;render()};
+  const r=$("#lkRedo");if(r)r.onclick=()=>{lk.mode="create";lk.entry="";lk.first="";lk.msg="";drawLock()};
+  clearTimeout(waitTimer);if(w)waitTimer=setTimeout(drawLock,1000);
+}
+function shake(){const d=$("#dots");if(d){d.classList.remove("shake");void d.offsetWidth;d.classList.add("shake")}}
+async function press(k){
+  if(lk.busy)return;
+  if(k==="del"){lk.entry=lk.entry.slice(0,-1);lk.msg="";drawLock();return}
+  if(lk.entry.length>=PIN_LEN)return;
+  lk.entry+=k;lk.msg="";drawLock();
+  if(lk.entry.length<PIN_LEN)return;
+  lk.busy=true;await new Promise(r=>setTimeout(r,120));
+  const pin=lk.entry;lk.entry="";
+  try{
+    if(lk.mode==="unlock"||lk.mode==="verify"){
+      if(await checkHash(PIN_KEY,pin)){
+        if(lk.mode==="verify"){lk.busy=false;lockScreen("create",{reason:"change"});return}
+        lk.busy=false;finishUnlock();return}
+      const n=(Number(lsGet(FAIL_KEY,0))||0)+1;lsSet(FAIL_KEY,String(n));
+      if(n>=5&&n%5===0){lsSet(WAIT_KEY,String(Date.now()+30000*(n/5)));lk.msg=""}
+      else lk.msg=`PIN salah.${n>=3?` ${5-(n%5)} percobaan lagi sebelum dijeda.`:""}`;
+      drawLock();shake();
+    }else if(lk.mode==="create"){
+      if(/^(\d)\1+$/.test(pin)||"0123456789".includes(pin)||"9876543210".includes(pin)){lk.msg="PIN terlalu mudah ditebak. Pilih kombinasi lain.";drawLock();shake()}
+      else{lk.first=pin;lk.mode="confirm";drawLock()}
+    }else if(lk.mode==="confirm"){
+      if(pin!==lk.first){lk.mode="create";lk.first="";lk.msg="PIN tidak sama. Buat ulang PIN Anda.";drawLock();shake()}
+      else{
+        const reason=lk.reason;await putHash(PIN_KEY,pin);lsSet(FAIL_KEY,"0");lsSet(WAIT_KEY,"0");
+        if(reason==="change"){lk.busy=false;lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;render();toast("PIN berhasil diganti");return}
+        const code=newRecovery();await putHash(REC_KEY,normCode(code));
+        lk.busy=false;lockScreen("showcode",{code});return;
+      }
+    }
+  }finally{lk.busy=false}
+}
+document.addEventListener("keydown",e=>{
+  if(lockEl.hidden||!["unlock","create","confirm","verify"].includes(lk.mode))return;
+  if(/^\d$/.test(e.key))press(e.key);else if(e.key==="Backspace")press("del");
+});
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden)hiddenAt=Date.now();
+  else if(store.mode!=="cloud"&&unlocked&&hasPin()&&hiddenAt&&Date.now()-hiddenAt>60000)lockScreen("unlock");
+});
+function newRecoveryFlow(){const code=newRecovery();putHash(REC_KEY,normCode(code)).then(()=>{lockEl.hidden=false;document.body.classList.add("locked");lk={mode:"showcode",code,then:()=>{lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");toast("Kode pemulihan baru tersimpan")}};drawLock()})}
+
+/* ================= Pengingat ambil ================= */
+const INGAT_OPS=[[0,"Tepat jam ambil"],[30,"30 menit sebelum"],[60,"1 jam sebelum"],[120,"2 jam sebelum"],[-1,"Tidak usah diingatkan"]];
+const fmtJam=s=>s?s.replace(":","."):"";
+function ambilAt(b){if(!b.tglAmbil)return null;const t=new Date(b.tglAmbil+"T"+(b.jamAmbil||"08:00")+":00").getTime();return isNaN(t)?null:t}
+function remindAt(b){const t=ambilAt(b);if(t==null)return null;const m=b.ingat==null?0:Number(b.ingat);if(m<0)return null;return b.jamAmbil?t-m*60000:t}
+const notifOK=()=>"Notification" in window&&Notification.permission==="granted";
+function reminderList(){
+  return store.batches.filter(b=>!selesaiCek(b)).map(b=>{const t=remindAt(b);if(t==null)return null;const c=counts(b);
+    return {key:b.id+"@"+t,id:b.id,t,title:"Waktunya ambil cucian",body:`${b.laundry||"Laundry"} · ${c.pcs} pcs · janji ambil ${b.jamAmbil?"jam "+fmtJam(b.jamAmbil):"hari ini"}. Jangan lupa cek barang saat mengambil.`}}).filter(Boolean);
+}
+async function metaGet(k){try{return await idbDo("readonly",s=>s.get(k),"meta")}catch(e){return null}}
+async function metaPut(k,v){try{await idbDo("readwrite",s=>s.put(v,k),"meta")}catch(e){}}
+let remTimers=[],schedQ=null;
+function queueSchedule(){clearTimeout(schedQ);schedQ=setTimeout(scheduleReminders,400)}
+async function scheduleReminders(){
+  if(!unlocked)return;
+  remTimers.forEach(clearTimeout);remTimers=[];
+  const shown=new Set((await metaGet("shown"))||[]);
+  const list=reminderList(),now=Date.now(),due=[];
+  for(const r of list){
+    if(shown.has(r.key))continue;
+    if(r.t<=now){if(now-r.t<12*3600e3)due.push(r);else shown.add(r.key)}
+    else if(r.t-now<2147483647)remTimers.push(setTimeout(()=>fireReminder(r),r.t-now));
+  }
+  await metaPut("shown",[...shown].slice(-300));
+  await metaPut("reminders",list);
+  for(const r of due)await fireReminder(r);
+}
+async function fireReminder(r){
+  const shown=new Set((await metaGet("shown"))||[]);
+  if(shown.has(r.key))return;shown.add(r.key);await metaPut("shown",[...shown].slice(-300));
+  await showNotif(r.title,r.body,r.id);
+}
+async function showNotif(title,body,id){
+  if(notifOK()){
+    const opt={body,icon:"icon-192.png",badge:"icon-192.png",tag:"ambil-"+id,renotify:true,requireInteraction:true,vibrate:[200,100,200],data:{id}};
+    try{const reg=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(reg){await reg.showNotification(title,opt);return true}}catch(e){}
+    try{new Notification(title,opt);return true}catch(e){}
+  }
+  toast(title+" · "+body);return false;
+}
+async function registerPeriodic(){
+  try{const reg=await navigator.serviceWorker.ready;if(!reg.periodicSync||!notifOK())return;
+    let ok=true;try{const st=await navigator.permissions.query({name:"periodic-background-sync"});ok=st.state==="granted"}catch(e){}
+    if(ok)await reg.periodicSync.register("cek-pengingat",{minInterval:3600e3});
+  }catch(e){}
+}
+async function askNotif(){
+  if(!("Notification" in window)){toast(isIOS()?"Di iPhone, pasang aplikasi ke Layar Utama dulu agar notifikasi bisa muncul.":"Browser ini tidak mendukung notifikasi. Pakai tombol Tambah ke kalender.");return false}
+  if(Notification.permission==="granted"){registerPeriodic();return true}
+  if(Notification.permission==="denied"){toast("Notifikasi diblokir. Izinkan lewat pengaturan situs di browser.");return false}
+  let p="default";try{p=await Notification.requestPermission()}catch(e){}
+  if(p==="granted"){registerPeriodic();queueSchedule();toast("Notifikasi pengingat aktif");if(!sheetOpen)render();return true}
+  if(!sheetOpen)render();return false;
+}
+function reminderHTML(){
+  const st="Notification" in window?Notification.permission:"unsupported";
+  const txt={granted:"Notifikasi aktif di HP ini.",denied:"Notifikasi diblokir di browser. Buka pengaturan situs (ikon di kiri alamat web), lalu izinkan Notifikasi.",default:"Notifikasi belum diizinkan.",unsupported:isIOS()?"Di iPhone, notifikasi baru bisa setelah aplikasi dipasang ke Layar Utama (iOS 16.4 ke atas).":"Browser ini tidak mendukung notifikasi."}[st];
+  return `<section class="backup sec-card"><div><h3>${ICON.bell}Pengingat ambil</h3>
+    <p class="muted"><b class="${st==="granted"?"ok-t":"bad-t"}">${txt}</b> Notifikasi muncul sesuai jam ambil di tiap kiriman. Supaya pasti berbunyi walau aplikasi tertutup lama, tambahkan juga ke kalender HP dari halaman kiriman.</p></div>
+    <div class="actions" style="margin:0">${st==="default"?`<button class="btn primary" data-act="notifon">${ICON.bell}Izinkan notifikasi</button>`:""}${st==="granted"?`<button class="btn" data-act="notiftest">${ICON.bell}Kirim notifikasi uji</button>`:""}</div></section>`;
+}
+const icsEsc=s=>String(s).replace(/\\/g,"\\\\").replace(/;/g,"\;").replace(/,/g,"\\,").replace(/\n/g,"\\n");
+function openCalSheet(b){
+  const t=ambilAt(b),c=counts(b),pad=n=>String(n).padStart(2,"0");
+  const title=`Ambil cucian – ${b.laundry||"Laundry"}`;
+  const details=`${c.pcs} pcs (${c.n} jenis)${b.nota?" · nota "+b.nota:""}. Buka Cek Cucian untuk mengecek barang saat mengambil.`;
+  const loc=d=>`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+  const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+  const day=s=>s.replace(/-/g,"");
+  const nextDay=s=>{const d=new Date(s+"T00:00:00");d.setDate(d.getDate()+1);return `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`};
+  const tz=(Intl.DateTimeFormat().resolvedOptions().timeZone)||"";
+  const gdates=b.jamAmbil?loc(new Date(t))+"/"+loc(new Date(t+30*60000)):day(b.tglAmbil)+"/"+nextDay(b.tglAmbil);
+  const gurl=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${gdates}&details=${encodeURIComponent(details)}${b.jamAmbil&&tz?"&ctz="+encodeURIComponent(tz):""}`;
+  const m=Math.max(0,Number(b.ingat)||0);
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Cek Cucian//ID","CALSCALE:GREGORIAN","BEGIN:VEVENT",`UID:${b.id}@cek-cucian`,`DTSTAMP:${utc(new Date())}`,
+    ...(b.jamAmbil?[`DTSTART:${utc(new Date(t))}`,`DTEND:${utc(new Date(t+30*60000))}`]:[`DTSTART;VALUE=DATE:${day(b.tglAmbil)}`,`DTEND;VALUE=DATE:${nextDay(b.tglAmbil)}`]),
+    `SUMMARY:${icsEsc(title)}`,`DESCRIPTION:${icsEsc(details)}`,
+    "BEGIN:VALARM","ACTION:DISPLAY",`DESCRIPTION:${icsEsc(title)}`,b.jamAmbil?`TRIGGER:-PT${m}M`:"TRIGGER:PT8H","END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+  openSheet(`<div class="sh"><h2>Tambah ke kalender</h2><button class="btn ghost" data-close>Tutup</button></div>
+    <p style="margin:0"><b>${esc(fmtDate(b.tglAmbil))}${b.jamAmbil?", jam "+esc(fmtJam(b.jamAmbil)):""}</b> · ${esc(b.laundry||"Laundry")}</p>
+    <p class="muted" style="margin:0">Kalender HP akan membunyikan pengingat walau Cek Cucian sedang ditutup.</p>
+    <a class="btn primary" id="calG" href="${esc(gurl)}" target="_blank" rel="noopener">${ICON.cal}Google Calendar</a>
+    <button class="btn" id="calI">${ICON.save}File kalender (iPhone / Samsung)</button>`,()=>{
+      $("#calI").onclick=()=>{const blob=new Blob([ics],{type:"text/calendar"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="ambil-cucian.ics";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);toast("Buka file ambil-cucian.ics untuk menambahkan ke kalender")};
+    });
+}
+let pendingOpen=new URLSearchParams(location.search).get("kiriman");
+if(navigator.serviceWorker)navigator.serviceWorker.addEventListener("message",e=>{if(e.data&&e.data.open&&e.data.open!=="tes"){pendingOpen=e.data.open;if(!sheetOpen)render()}});
+
 /* ================= Mulai ================= */
-load();render();
-if(!lsGet(OB_KEY)&&!store.batches.length)setTimeout(openOnboarding,250);
+/* ================= Akun Firebase ================= */
+const FB_VER="10.14.1";
+let migrateAsked=false;
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;s.onerror=()=>rej(new Error("Gagal memuat "+src));document.head.appendChild(s)})}
+function userCol(n){return store.db.collection("users").doc(store.uid).collection(n)}
+function fbErr(e){const c=(e&&e.code)||"";const M={
+  "auth/invalid-credential":"Email atau password salah.","auth/invalid-login-credentials":"Email atau password salah.","auth/wrong-password":"Email atau password salah.",
+  "auth/user-not-found":"Email belum terdaftar. Pilih Daftar sekarang.","auth/email-already-in-use":"Email ini sudah terdaftar. Silakan masuk.",
+  "auth/weak-password":"Password minimal 6 karakter.","auth/invalid-email":"Format email tidak benar.","auth/missing-password":"Password belum diisi.",
+  "auth/too-many-requests":"Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.","auth/network-request-failed":"Tidak ada koneksi internet.",
+  "auth/unauthorized-domain":"Alamat aplikasi ini belum diizinkan di Firebase (Authentication → Settings → Authorized domains).",
+  "auth/operation-not-allowed":"Metode masuk ini belum diaktifkan di Firebase console.","auth/popup-blocked":"Jendela login diblokir browser.",
+  "permission-denied":"Akses ditolak. Periksa aturan keamanan Firestore.","unavailable":"Server tidak bisa dihubungi. Perubahan dikirim saat online."};
+  return M[c]||(e&&e.message)||"Terjadi kesalahan."}
+function cloudWrite(b){const d=JSON.parse(JSON.stringify(b));const id=d.id;delete d.id;userCol("kiriman").doc(id).set(d).catch(e=>toast("Gagal menyimpan: "+fbErr(e)))}
+async function startCloud(cfg){
+  showAuth("loading");
+  try{
+    for(const m of ["app","auth","firestore"])await loadScript(`https://www.gstatic.com/firebasejs/${FB_VER}/firebase-${m}-compat.js`);
+    firebase.initializeApp(cfg);
+    store.auth=firebase.auth();store.auth.languageCode="id";
+    store.db=firebase.firestore();
+    try{await store.db.enablePersistence({synchronizeTabs:true})}catch(e){}
+    store.auth.getRedirectResult().catch(e=>showAuth("masuk",fbErr(e)));
+    store.auth.onAuthStateChanged(u=>{if(u)enterCloud(u);else leaveCloud()});
+  }catch(e){showAuth("offline")}
+}
+function enterCloud(u){
+  if(store.unsub)store.unsub();
+  store.uid=u.uid;store.user=u;store.loaded=false;store.batches=[];
+  lockEl.hidden=true;lockEl.innerHTML="";document.body.classList.remove("locked");unlocked=true;
+  render();
+  let first=true;
+  store.unsub=userCol("kiriman").onSnapshot(snap=>{
+    store.batches=snap.docs.map(d=>Object.assign({id:d.id},d.data())).sort((a,b)=>(b.tglAntar||"").localeCompare(a.tglAntar||"")||(b.dibuat||0)-(a.dibuat||0));
+    store.loaded=true;if(!sheetOpen)render();
+    if(first){first=false;setTimeout(afterFirstLoad,150)}
+  },e=>{store.loaded=true;render();toast("Tidak bisa memuat catatan: "+fbErr(e))});
+}
+function leaveCloud(){
+  if(store.unsub){store.unsub();store.unsub=null}
+  store.uid=null;store.user=null;store.batches=[];store.loaded=false;store.cache.clear();metaPut("reminders",[]);remTimers.forEach(clearTimeout);
+  unlocked=false;$("#view").innerHTML="";$("#overlay").innerHTML="";sheetOpen=false;sheetRedraw=null;
+  showAuth("masuk");
+}
+function localBatches(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"[]")||[]}catch(e){return[]}}
+function afterFirstLoad(){
+  const local=localBatches();
+  if(local.length&&!migrateAsked){migrateAsked=true;offerMigrate(local)}
+  else if(!lsGet(OB_KEY)&&!store.batches.length)openOnboarding();
+}
+function offerMigrate(local){
+  openSheet(`<div class="sh"><h2>Pindahkan catatan lama</h2><button class="btn ghost" data-close>Nanti</button></div>
+    <p style="margin:0">Ada <b>${local.length} kiriman</b> yang tersimpan di HP ini dari sebelum Anda login. Pindahkan ke akun supaya ikut tersimpan aman dan bisa dibuka dari HP lain?</p>
+    <p class="muted small" style="margin:0">Setelah dipindahkan, salinan di HP ini dihapus. Foto ikut dipindahkan.</p>
+    <button class="btn primary" id="mgGo">${ICON.upload}Pindahkan ke akun</button>`,()=>{
+      $("#mgGo").onclick=async()=>{const btn=$("#mgGo");btn.disabled=true;
+        try{await migrateLocal(local,btn);closeSheet();toast(`${local.length} kiriman dipindahkan ke akun`)}
+        catch(e){btn.disabled=false;btn.textContent="Coba lagi";toast("Gagal memindahkan: "+fbErr(e))}};
+    });
+}
+async function migrateLocal(local,btn){
+  let done=0;
+  for(const b of local){
+    const map=new Map();
+    for(const r of allRefs(b)){if(r&&r.i&&!map.has(r.i)){try{const blob=await idbDo("readonly",s=>s.get(r.i));if(blob)map.set(r.i,await importPhoto(await blobToDataURL(blob),r.i))}catch(e){}}}
+    remapRefs(b,map);
+    if(!store.batches.some(x=>x.id===b.id))cloudWrite(b);
+    done++;btn.textContent=`Memindahkan ${done}/${local.length}…`;
+  }
+  try{localStorage.removeItem(LS_KEY)}catch(e){}
+  try{await idbDo("readwrite",s=>s.clear())}catch(e){}
+}
+async function importPhoto(u,id){
+  if(store.mode==="cloud"){
+    if(u.length>950000){const bl=await (await fetch(u)).blob();u=await blobToDataURL(await compress(bl,1000,.7,false))}
+    const nid=uid();userCol("foto").doc(nid).set({d:u,t:Date.now()}).catch(e=>toast("Foto gagal diunggah: "+fbErr(e)));
+    store.cache.set(nid,u);return {f:nid};
+  }
+  const blob=await (await fetch(u)).blob();await idbDo("readwrite",s=>s.put(blob,id));store.cache.delete(id);return {i:id};
+}
+function remapRefs(b,map){const fix=a=>(a||[]).map(r=>(r&&map.get(r.i||r.f))||r);b.fotoUmum=fix(b.fotoUmum);(b.items||[]).forEach(it=>{it.foto=fix(it.foto);if(it.cekFoto)it.cekFoto=fix(it.cekFoto)})}
+async function photoDataURL(r){
+  if(!r)return null;
+  if(r.f){const c=store.cache.get(r.f);if(c)return c;try{const s=await userCol("foto").doc(r.f).get();return s.exists?s.data().d:null}catch(e){return null}}
+  if(r.i){const blob=await idbDo("readonly",s=>s.get(r.i));return blob?await blobToDataURL(blob):null}
+  return null;
+}
+function accountHTML(){
+  const u=store.user||{};
+  return `<section class="backup sec-card"><div><h3>${ICON.lock}Akun</h3><p class="muted">Masuk sebagai <b>${esc(u.email||u.displayName||"-")}</b>. Catatan dan foto tersimpan di akun ini dan bisa dibuka dari HP lain dengan login yang sama.</p></div>
+    <div class="actions" style="margin:0"><button class="btn" data-act="backup">${ICON.save}Unduh cadangan</button><button class="btn" data-act="restore">${ICON.upload}Impor cadangan</button><button class="btn danger" data-act="logout">Keluar</button></div></section>`;
+}
+function showAuth(mode,msg,ok){
+  lockEl.hidden=false;document.body.classList.add("locked");
+  const L=LOGO+'<div class="lk-brand">Cek Cucian</div>';
+  if(mode==="loading"){lockEl.innerHTML=`<div class="lk"><div class="lk-in">${L}<p class="muted">Menyiapkan…</p></div></div>`;return}
+  if(mode==="offline"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in">${L}<h2>Tidak bisa terhubung</h2><p class="muted">Periksa koneksi internet, lalu coba lagi. Login pertama kali perlu internet.</p><button class="btn primary big" id="auRetry">Coba lagi</button></div></div>`;
+    $("#auRetry").onclick=()=>location.reload();return;
+  }
+  if(mode==="lupa"){
+    lockEl.innerHTML=`<div class="lk"><div class="lk-in auth">${L}<h2>Lupa password</h2><p class="muted">Masukkan email akun Anda. Kami kirimkan link untuk membuat password baru.</p>
+      <form id="auF" class="auform" novalidate><input type="email" id="auE" autocomplete="email" placeholder="Email" required>
+      <p class="lk-msg ${ok?"ok":""}" id="auMsg">${esc(msg||"")}</p><button class="btn primary big" type="submit" id="auGo">Kirim link reset</button></form>
+      <button class="btn ghost" id="auBack">Kembali ke halaman masuk</button></div></div>`;
+    $("#auBack").onclick=()=>showAuth("masuk");
+    $("#auF").onsubmit=async e=>{e.preventDefault();const em=$("#auE").value.trim();if(!em){setAuMsg("Email belum diisi.");return}
+      busyBtn(true);try{await store.auth.sendPasswordResetEmail(em);showAuth("lupa","Link reset sudah dikirim ke "+em+". Cek juga folder spam.",true)}catch(err){busyBtn(false);setAuMsg(fbErr(err))}};
+    return;
+  }
+  const reg=mode==="daftar";
+  lockEl.innerHTML=`<div class="lk"><div class="lk-in auth">${L}
+    <h2>${reg?"Buat akun":"Masuk"}</h2>
+    <p class="muted">${reg?"Daftar gratis supaya catatan cucian tersimpan aman di akun Anda.":"Masuk untuk membuka catatan cucian Anda dari HP mana saja."}</p>
+    <button class="btn gbtn big" id="auG"><span class="g-dot" aria-hidden="true">G</span>Masuk dengan Google</button>
+    <div class="or"><span>atau dengan email</span></div>
+    <form id="auF" class="auform" novalidate>
+      <input type="email" id="auE" autocomplete="email" placeholder="Email" required>
+      <div class="pw"><input type="password" id="auP" autocomplete="${reg?"new-password":"current-password"}" placeholder="Password${reg?" (min. 6 karakter)":""}" required><button type="button" class="pwt" id="auT">Lihat</button></div>
+      ${reg?`<input type="password" id="auP2" autocomplete="new-password" placeholder="Ulangi password" required>`:""}
+      <p class="lk-msg" id="auMsg">${esc(msg||"")}</p>
+      <button class="btn primary big" type="submit" id="auGo">${reg?"Daftar":"Masuk"}</button>
+    </form>
+    ${reg?"":`<button class="btn ghost" id="auLupa">Lupa password?</button>`}
+    <p class="small muted" style="margin:0">${reg?"Sudah punya akun?":"Belum punya akun?"} <button class="linkbtn" id="auSw">${reg?"Masuk":"Daftar sekarang"}</button></p>
+  </div></div>`;
+  $("#auSw").onclick=()=>showAuth(reg?"masuk":"daftar");
+  const lp=$("#auLupa");if(lp)lp.onclick=()=>showAuth("lupa");
+  $("#auT").onclick=()=>{const p=$("#auP");const show=p.type==="password";p.type=show?"text":"password";const p2=$("#auP2");if(p2)p2.type=p.type;$("#auT").textContent=show?"Sembunyikan":"Lihat"};
+  $("#auG").onclick=async()=>{
+    const pr=new firebase.auth.GoogleAuthProvider();pr.setCustomParameters({prompt:"select_account"});
+    try{await store.auth.signInWithPopup(pr)}
+    catch(err){if(["auth/popup-blocked","auth/operation-not-supported-in-this-environment","auth/web-storage-unsupported"].includes(err.code)){try{await store.auth.signInWithRedirect(pr)}catch(e2){setAuMsg(fbErr(e2))}}
+      else if(!["auth/popup-closed-by-user","auth/cancelled-popup-request"].includes(err.code))setAuMsg(fbErr(err))}
+  };
+  $("#auF").onsubmit=async e=>{
+    e.preventDefault();const em=$("#auE").value.trim(),pw=$("#auP").value;
+    if(!em||!pw){setAuMsg("Email dan password wajib diisi.");return}
+    if(reg){if(pw.length<6){setAuMsg("Password minimal 6 karakter.");return}if(pw!==$("#auP2").value){setAuMsg("Ulangi password tidak sama.");return}}
+    busyBtn(true);
+    try{if(reg)await store.auth.createUserWithEmailAndPassword(em,pw);else await store.auth.signInWithEmailAndPassword(em,pw)}
+    catch(err){busyBtn(false);setAuMsg(fbErr(err))}
+  };
+}
+function setAuMsg(m){const el=$("#auMsg");if(el){el.className="lk-msg";el.textContent=m}}
+function busyBtn(on){const b=$("#auGo");if(!b)return;if(on){b.dataset.t=b.textContent;b.textContent="Memproses…";b.disabled=true}else{b.textContent=b.dataset.t||b.textContent;b.disabled=false}}
+
+load();
+$("#lockBtn").onclick=()=>{if(hasPin())lockScreen("unlock")};
+const CFG=window.FIREBASE_CONFIG;
+if(CFG&&CFG.apiKey&&CFG.projectId&&!/ISI_DI_SINI/.test(CFG.apiKey)){store.mode="cloud";$("#lockBtn").hidden=true;startCloud(CFG)}
+else lockScreen(hasPin()?"unlock":"create");
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
+if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js").then(()=>registerPeriodic()).catch(()=>{});
 })();
 </script>
 

@@ -1,0 +1,31 @@
+CARA MENGAKTIFKAN LOGIN AKUN (FIREBASE) - CEK CUCIAN
+======================================================
+
+Tanpa langkah ini aplikasi tetap jalan dalam mode tanpa akun
+(data di HP + kunci PIN).
+
+1. Buka https://console.firebase.google.com dan login dengan akun Google.
+2. Klik "Create a project", beri nama (misal: cek-cucian).
+   Google Analytics boleh dimatikan.
+3. Menu Build > Authentication > Get started.
+   Tab "Sign-in method": aktifkan "Google" dan "Email/Password".
+4. Masih di Authentication > Settings > Authorized domains:
+   klik "Add domain", isi alamat GitHub Pages Anda, contoh: namauser.github.io
+5. Menu Build > Firestore Database > Create database.
+   Lokasi: asia-southeast2 (Jakarta). Mode: production.
+6. Di Firestore, buka tab "Rules". Hapus isinya, tempel seluruh isi file
+   firestore.rules dari paket ini, lalu klik "Publish".
+7. Klik ikon gerigi > Project settings > bagian "Your apps" > ikon Web </>.
+   Beri nama aplikasi, klik "Register app".
+8. Salin nilai di dalam firebaseConfig (apiKey, authDomain, projectId,
+   storageBucket, messagingSenderId, appId) ke file firebase-config.js,
+   menggantikan "ISI_DI_SINI" dan tanda kutip kosong.
+9. Unggah index.html, sw.js, firebase-config.js ke repo GitHub, Commit.
+   Tunggu 1-2 menit, buka aplikasinya. Layar login akan muncul.
+
+Catatan:
+- Paket gratis (Spark) sudah cukup. Tidak perlu kartu kredit.
+  Foto disimpan di Firestore dalam ukuran kecil (kuota gratis 1 GB).
+- Pelanggan yang sudah punya catatan di HP akan ditawari memindahkan
+  catatannya ke akun saat pertama login.
+- Kalau muncul pesan "Alamat aplikasi ini belum diizinkan", ulangi langkah 4.

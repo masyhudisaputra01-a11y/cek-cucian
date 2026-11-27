@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Tiap pelanggan hanya bisa membaca dan mengubah datanya sendiri.
+    match /users/{uid}/kiriman/{id} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /users/{uid}/foto/{id} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.d is string
+        && request.resource.data.d.size() < 1000000;
+    }
+  }
+}
